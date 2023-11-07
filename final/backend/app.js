@@ -22,7 +22,7 @@ const options = {
     },
     servers: [
       {
-        url: "https://api-doc-3wpu.onrender.com/" || "http://localhost:3000/",
+        url: "http://localhost:3000/",
       },
     ],
   },
@@ -31,7 +31,6 @@ const options = {
 
 const specs = swaggerJsdoc(options);
 app.use(
-  "/api-docs",
   swaggerUi.serve,
   swaggerUi.setup(specs)
 );
