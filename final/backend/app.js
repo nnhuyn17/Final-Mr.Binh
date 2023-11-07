@@ -1,39 +1,41 @@
 const express = require("express");
-const mysql = require("mysql");
-const dotenv = require("dotenv");
-const path = require("path");
+const bookRoutes = require("./routes/books");
+const swaggerJsdoc = require("swagger-jsdoc")
+const swaggerUi = require("swagger-ui-express");
 
 const app = express();
 
-dotenv.config({ path: './.env' });
+// middleware
+app.use(express.json());
 
+// define all our routes
+app.use("/", bookRoutes);
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "User Express API",
+      version: "0.1.0",
+      description:
+        "This is a simple User API application made with Express and documented with Swagger",
+    },
+    servers: [
+      {
+        url: "http://localhost:3000/",
+      },
+    ],
+  },
+  apis: ["./routes/*.js"],
+};
 
+const specs = swaggerJsdoc(options);
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(specs)
+);
 
-const db = mysql.createConnection({
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE
+const port = 3000
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
 });
-
-const publicDirectory = path.join(__dirname, "final", "fontend", "homepage"); // Set the root directory for static files
-
-app.use(express.static(publicDirectory));
-
-db.connect((error) => {
-    if (error) {
-        console.log(error);
-    } else {
-        console.log("MySQL connected");
-    }
-});
-
-app.get("/", (req, res) => {
-    res.sendFile("C:/Users/PC/my-app/Final-Mr.Binh/final/fontend/login/index.html");
-});
-
-app.listen(5000, () => {
-    console.log("Server started on Port 5000");
-});
-
-
