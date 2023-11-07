@@ -10,6 +10,7 @@ app.use(express.json());
 
 // define all our routes
 app.use("/", bookRoutes);
+
 const options = {
   definition: {
     openapi: "3.0.0",
@@ -21,7 +22,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:3000/",
+        url: process.env.BASE_URL || "http://localhost:3000/",
       },
     ],
   },
@@ -35,7 +36,7 @@ app.use(
   swaggerUi.setup(specs)
 );
 
-const port = 3000
+const port = 3000;
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
