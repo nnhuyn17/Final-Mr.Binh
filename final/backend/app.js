@@ -22,7 +22,7 @@ const options = {
     },
     servers: [
       {
-        url: process.env.BASE_URL || "http://localhost:3000/",
+        url: "https://api-doc-3wpu.onrender.com/" || "http://localhost:3000/",
       },
     ],
   },
