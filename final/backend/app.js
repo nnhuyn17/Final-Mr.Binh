@@ -1,5 +1,5 @@
 const express = require("express");
-const bookRoutes = require("./routes/books");
+const userRoutes = require("./routes/users");
 const swaggerJsdoc = require("swagger-jsdoc")
 const swaggerUi = require("swagger-ui-express");
 
@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 
 // define all our routes
-app.use("/", bookRoutes);
+app.use("/", userRoutes);
 
 const options = {
   definition: {
@@ -31,6 +31,7 @@ const options = {
 
 const specs = swaggerJsdoc(options);
 app.use(
+  "/api-docs",
   swaggerUi.serve,
   swaggerUi.setup(specs)
 );
