@@ -45,13 +45,13 @@
               <div class="regis">
                 <p class="regis"><i><a class="regis" href="/signup/index.html">Do not have account?</a></i></p>
               </div>
-      
-              <button type="submit">Login</button>
+              
+              <button type="submit" onClick = "navigateToPath('../homepage/index.html')">
+                Login
+              </button>
       
             </div>
     </section>
-
-
         <div class="footer">
             <div class="copyright">
                 <p>2023 Ngoc Huyen, All Rights Reversed.</p>
@@ -70,6 +70,9 @@
       AOS.init({
 
       });
+      function navigateToPath(path){
+        window.location.href = path
+      }
     </script>
 </body>
 </head>
