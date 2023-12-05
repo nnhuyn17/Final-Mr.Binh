@@ -126,9 +126,10 @@
  *         description: The user was not found
  */
 
-const userRouter = require('express').Router();
+const express = require("express")
+const userRouter = express.Router();
 const models = require('../models');
-
+const userController = require('../controller/userController')
 // Create a new user
 userRouter.post('/create', (req, res) => {
     const { name, password, role } = req.body;
@@ -209,5 +210,10 @@ userRouter.delete('/user/:id', (req, res) => {
             res.status(500).send(err);
         });
 });
+
+
+//demo 1 
+userRouter.get("/getAllDemo" , userController.getAllDemo);
+userRouter.get("/getByID/:id" , userController.getByID);
 
 module.exports = userRouter;
