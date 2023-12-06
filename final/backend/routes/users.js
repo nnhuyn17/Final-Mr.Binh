@@ -128,7 +128,7 @@
 
 const express = require("express")
 const userRouter = express.Router();
-const models = require('../models');
+const models = require('../models/users');
 const userController = require('../controller/userController')
 // Create a new user
 userRouter.post('/create', (req, res) => {
@@ -215,5 +215,8 @@ userRouter.delete('/user/:id', (req, res) => {
 //demo 1 
 userRouter.get("/getAllDemo" , userController.getAllDemo);
 userRouter.get("/getByID/:id" , userController.getByID);
+userRouter.get("/getFullNameByID/:id" , userController.getFullNameByID);
+
+
 
 module.exports = userRouter;

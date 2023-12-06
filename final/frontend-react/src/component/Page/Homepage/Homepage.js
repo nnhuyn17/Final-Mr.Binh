@@ -2,16 +2,58 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Homepage.module.scss';
 import about_img from '../../../assets/img/3.jpg';
-import serice1 from "../../../assets/img/s-1.svg" 
-import serice2 from "../../../assets/img/s-2.svg" 
-import serice3 from "../../../assets/img/s-3.svg" 
-import portfolio from "../../../assets/img/port-1.jpg" 
+import serice1 from "../../../assets/img/s-1.svg"
+import serice2 from "../../../assets/img/s-2.svg"
+import serice3 from "../../../assets/img/s-3.svg"
+import portfolio from "../../../assets/img/port-1.jpg"
 
 // import { Link, Navigate } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function Homepage() {
 
+  const [date, setDate] = useState('');
+  const [time_range, setTime] = useState('9am-11am');
+  const [content, setContent] = useState('');
+
+  const handleDateChange = (e) => {
+    setDate(e.target.value);
+  };
+  const handleTimeChange = (e) => {
+    setTime(e.target.value);
+  };
+  const handleContentChange = (e) => {
+    setContent(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Call your API endpoint here with the form data
+    // Example using fetch:
+    fetch('http://localhost:8081/createMeeting', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user_id: localStorage.getItem('accountID'), // Replace with the actual user ID
+        date,
+        time_range: time_range,
+        content,
+        status: 'pending', // Default status
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        // Add any additional logic for success
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Add any additional error handling logic
+      });
+  };
 
   return (
     <div>
@@ -120,7 +162,7 @@ function Homepage() {
             </a>
           </div>
           <div className={cx('box')}>
-            <img src= {serice2} alt="Service 2" />
+            <img src={serice2} alt="Service 2" />
             <h3>Software Engineer</h3>
             <p>
               My expertise lies in designing, developing, and optimizing digital
@@ -303,26 +345,36 @@ function Homepage() {
           </h2>
         </div>
         <div className={cx('form-container')} >
-          <form action="fields">
-            <div className={cx('field')}>
-              <label>Your Name / Your Company</label>
-              <br />
-              <input
-                type="text"
-                placeholder="Enter Your Name / Your Company ..."
-                required=""
-              />
-            </div>
+
+
+
+          <form onSubmit={handleSubmit}>
             <div className={cx('input-field')}>
-              <label>Date of Birth</label>
+              <label>Date Meeting</label>
               <input
                 type="date"
-                placeholder="Enter Your Birth Date ...  "
                 required=""
-                id="dob"
+                id="date"
+                value={date}
+                onChange={handleDateChange}
+                className={cx({})}
               />
             </div>
-            {/* Repeat the structure for other form fields */}
+
+            <div className={cx('input-field')}>
+              <label>Time</label>
+              <select
+                value={time_range}
+                onChange={handleTimeChange}>
+                <option value="9am-11am">9am-11am</option>
+                <option value="1pm-3pm">1pm-3pm</option>
+                <option value="3pm-5pm">3pm-5pm</option>
+                <option value="5pm-7pm">5pm-7pm</option>
+                <option value="7pm-9pm">7pm-9pm</option>
+              </select>
+            </div>
+
+
             <div className={cx('input-field')}>
               <label>Message</label>
               <textarea
@@ -332,17 +384,17 @@ function Homepage() {
                 rows={10}
                 placeholder="Write Message Here ..."
                 required=""
-                defaultValue={""}
+                value={content}
+                onChange={handleContentChange}
+
               />
             </div>
-            <div className={cx('input-field')}>
-              <input
-                type="submit"
-                name=""
-                defaultValue="Send Message"
-                className={cx('send-btn')}
-              />
-            </div>
+            <button className={cx('input-field')} type="submit"
+              name=""
+              defaultValue="Send Message"
+            > submit
+
+            </button>
           </form>
         </div>
       </section>

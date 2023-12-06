@@ -1,6 +1,8 @@
 const express = require("express");
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
+const meetingRouter = require("./routes/meeting");
+
 const cors = require('cors');
 
 const swaggerJsdoc = require("swagger-jsdoc")
@@ -21,6 +23,7 @@ configViewEngine(app)
 // define all our routes
 app.use("/", userRoutes);
 app.use("/", authRoutes);
+app.use("/", meetingRouter);
 
 const options = {
   definition: {
@@ -33,7 +36,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:3000/",
+        url: "http://localhost:8081/",
       },
     ],
   },

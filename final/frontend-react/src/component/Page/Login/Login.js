@@ -9,6 +9,7 @@ function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('');
 
   const handleSubmit = async () => {
     try {
@@ -18,30 +19,43 @@ function Login() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: email, 
+          email: email,
           password: password,
         }),
       });
-
-      if (response.status === 200) {
+  
+      if (response.ok) {
         const data = await response.json();
-        const { token } = data;
-      
-        // Assuming you want to store the token in localStorage
-        localStorage.setItem('token', token);
-      
-        // Navigate to the home page
-        navigate('/home');
+        const { token, role: userRole, id: accountId } = data;
+  
+        // Store token, role, and account ID in local storage
+        localStorage.setItem('accountID', accountId);
+        localStorage.setItem('currentRole', userRole);
+  
+        // Navigate based on the retrieved role from local storage
+        if (userRole === 'user') {
+          navigate('/home');
+          localStorage.setItem('token-user', token);
+          window.location.reload();
+
+        }
+        else if (userRole === 'admin') {
+          localStorage.setItem('token-admin', token);
+          navigate('/homeAd');
+          window.location.reload();
+        }
+
       } else {
         // Handle login failure (e.g., display an error message)
         console.error('Login failed');
       }
-      
     } catch (error) {
       console.error('An error occurred during login:', error);
     }
   };
 
+  console.log("Day la token-admin" , localStorage.getItem('token-admin'));
+  console.log("Day la token-user" ,localStorage.getItem('token-user'));
 
   return (
     <section className={cx("hero")} >
@@ -85,8 +99,8 @@ function Login() {
 
           <button type="button" onClick={handleSubmit}>
             Login
-          </button>
-
+            </button>
+          
         </div>
       </div>
     </section>

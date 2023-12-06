@@ -1,10 +1,9 @@
-
-body{
+body {
     color: var(--text-color);
     background: var(--bg-color);
 }
 
-header{
+header {
     position: fixed;
     width: 100%;
     top: 0;
@@ -17,35 +16,42 @@ header{
     background: transparent;
     transition: all .50s ease;
 }
-.logo{
+
+.logo {
     font-size: 36px;
     color: var(--text-color);
     font-weight: 600;
 }
-span{
+
+span {
     color: var(--main-color);
 }
-.navlist{
+
+.navlist {
     display: flex;
 }
-.navlist a{
+
+.navlist a {
     font-size: var(--p-font);
     font-weight: 500;
     color: var(--other-color);
     margin-left: 40px;
     transition: all .50s ease;
 }
-.navlist a:hover{
+
+.navlist a:hover {
     color: var(--main-color);
     text-shadow: 3px 3px 20px var(--main-color), -2px 1px 30px var(--text-color);
 }
-#menu-icon{
+
+#menu-icon {
     font-size: 35px;
     z-index: 10001;
     cursor: pointer;
     display: none;
 }
-.h-btn{
+
+.h-btn {
     display: inline-block;
     padding: 11px 26px;
     background: transparent;
@@ -56,17 +62,19 @@ span{
     font-weight: 600;
     transition: all .50s ease;
 }
-.h-btn:hover{
+
+.h-btn:hover {
     background: var(--main-color);
     color: var(--bg-color);
     box-shadow: 0 0 20px var(--main-color);
     transform: scale(1.1);
 }
 
-section{
+section {
     padding: 110px 16% 90px;
 }
-.hero{
+
+.hero {
     height: 100vh;
     width: 100%;
     background: url('../../../assets/img/2.svg');
@@ -76,16 +84,19 @@ section{
     align-items: center;
     justify-content: flex-start;
 }
-.main-content h4{
+
+.main-content h4 {
     font-size: 1.6rem;
 }
-.main-content h1{
+
+.main-content h1 {
     font-size: var(--h1-font);
     font-weight: 900;
     margin: 20px 0px 20px;
     line-height: 1.2;
 }
-.main-content p{
+
+.main-content p {
     font-size: var(--p-font);
     font-weight: 400;
     width: 620px;
@@ -94,10 +105,12 @@ section{
     line-height: 30px;
     margin-bottom: 15px;
 }
-.social{
+
+.social {
     margin-bottom: 40px;
 }
-.social i{
+
+.social i {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -112,11 +125,13 @@ section{
     cursor: pointer;
     transition: all .50s ease;
 }
-.social i:hover{
+
+.social i:hover {
     transform: scale(1.1);
     box-shadow: 0 0 20px var(--main-color);
 }
-.btn{
+
+.btn {
     display: inline-block;
     padding: 11px 26px;
     background: var(--main-color);
@@ -127,35 +142,41 @@ section{
     font-weight: 600;
     transition: all .50s ease;
 }
-.btn:hover{
+
+.btn:hover {
     background: transparent;
     color: var(--main-color);
     box-shadow: 0 0 20px var(--main-color);
 }
-.btn2{
+
+.btn2 {
     background: transparent;
     color: var(--main-color);
     border: 2px solid var(--main-color);
     margin-left: 15px;
     transition: all .50s ease;
 }
-.btn2:hover{
+
+.btn2:hover {
     background: var(--main-color);
     color: var(--bg-color);
 }
-header.sticky{
+
+header.sticky {
     background: var(--bg-color);
     box-shadow: 0 .1rem 1rem rgba(0, 0, 0, .2);
     padding: 16px 16%;
 }
-.about{
+
+.about {
     background: var(--second-bg-color);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
     gap: 6rem;
 }
-.about-img img{
+
+.about-img img {
     width: 100%;
     height: 530px;
     max-width: 530px;
@@ -164,40 +185,48 @@ header.sticky{
     border: 7px solid var(--main-color);
     box-shadow: 0 0 20px var(--main-color);
 }
-.about-text h2{
+
+.about-text h2 {
     font-size: var(--h2-font);
     line-height: 1.3;
     margin-bottom: 20px;
 }
-.exp-area{
+
+.exp-area {
     margin-bottom: 50px;
 }
-.exp-area p{
+
+.exp-area p {
     color: var(--text-color);
     font-weight: 600;
     font-size: 19px;
     line-height: 42px;
 }
-.exp-area p span{
+
+.exp-area p span {
     color: var(--other-color);
     font-size: var(--p-font);
     font-weight: 400;
     margin-left: 8px;
 }
-.center-text{
+
+.center-text {
     text-align: center;
 }
-.center-text h2{
+
+.center-text h2 {
     font-size: var(--h2-font);
 }
-.services-content{
+
+.services-content {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, auto));
     align-items: center;
     gap: 2.3rem;
     margin-top: 4.2rem;
 }
-.box{
+
+.box {
     padding: 80px 40px 66px;
     background: #2d343f;
     border-radius: 28px;
@@ -206,22 +235,26 @@ header.sticky{
     transition: all .50s ease;
     cursor: pointer;
 }
-.box img{
+
+.box img {
     margin-bottom: 20px;
 }
-.box h3{
+
+.box h3 {
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 10px;
 }
-.box p{
+
+.box p {
     font-size: var(--p-font);
     font-weight: 400;
     color: var(--other-color);
     line-height: 30px;
     margin-bottom: 20px;
 }
-.box a{
+
+.box a {
     display: inline-block;
     font-size: 22px;
     line-height: 1.273em;
@@ -231,36 +264,43 @@ header.sticky{
     border-bottom: 2px solid #5d6c83;
     transition: all .50s ease;
 }
-.box i{
+
+.box i {
     vertical-align: middle;
     font-size: 25px;
     color: var(--main-color);
     margin-left: 5px;
 }
-.box a:hover{
+
+.box a:hover {
     border-bottom: 2px solid var(--main-color);
 }
-.box:hover{
+
+.box:hover {
     border: 1px solid var(--main-color);
     transform: translateY(-5px) scale(1.03);
 }
-.portfolio{
+
+.portfolio {
     background: var(--second-bg-color);
 }
-.Portfolio-content{
+
+.Portfolio-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, auto));
     align-items: center;
     gap: 2.3rem;
     margin-top: 4.2rem;
 }
-.row img{
+
+.row img {
     height: auto;
     width: 100%;
     border-radius: 28px;
     margin-bottom: 1.4rem;
 }
-.row{
+
+.row {
     background: #2d343f;
     border-radius: 28px;
     border: 1px solid transparent;
@@ -268,19 +308,21 @@ header.sticky{
     padding: 20px;
     transition: all .50s ease;
 }
-.main-row{
+
+.main-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 0.5rem;
 }
 
-.row h5{
+.row h5 {
     font-size: 20px;
     font-weight: 600;
     color: var(--other-color);
 }
-.row i{
+
+.row i {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -291,13 +333,15 @@ header.sticky{
     color: var(--text-color);
     background: #075fe4;
 }
-.row h4{
+
+.row h4 {
     font-size: 15px;
     font-weight: 700;
     margin-bottom: 10px;
     line-height: 1.4;
 }
-.row:hover{
+
+.row:hover {
     border: 1px solid var(--main-color);
     transform: translateY(-5px) scale(1.03);
     cursor: pointer;
@@ -307,7 +351,7 @@ header.sticky{
     background: #2d343f;
 }
 
-.form-container{
+.form-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, auto));
     align-items: center;
@@ -315,19 +359,20 @@ header.sticky{
     margin-top: 4.2rem;
 }
 
-form .form-container .input-fields label{
+form .form-container .input-fields label {
     margin: 4px 0;
     gap: 2rem;
     padding: 20px;
 }
 
 
-.input-fields input{
+.input-fields input {
     height: 42px;
     margin: 8px 0;
 }
 
-form input, form textarea{
+form input,
+form textarea {
     width: 100%;
     padding: 20px;
     border: none;
@@ -338,12 +383,14 @@ form input, form textarea{
     margin-bottom: 20px;
     border-radius: 8px;
 }
+
 form input::placeholder,
-form textarea::placeholder{
+form textarea::placeholder {
     color: var(--other-color);
     font-size: 15px;
 }
-form .send-btn{
+
+form .send-btn {
     display: inline-block;
     padding: 11px 26px;
     background: var(--main-color);
@@ -355,13 +402,47 @@ form .send-btn{
     transition: all .50s ease;
     width: 30%;
 }
-form .send-btn:hover{
+
+form .send-btn:hover {
     background: transparent;
     color: var(--main-color);
     box-shadow: 0 0 20px var(--main-color);
     cursor: pointer;
 }
-.footer{
+
+
+select {
+    width: 100%;
+    padding: 20px;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 5px var(--main-color);
+    background: #2d343f;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    border-radius: 8px;
+
+}
+
+select::-ms-expand {
+    display: none;
+    /* Hide the default arrow in Internet Explorer */
+}
+
+select:after {
+    content: '▼';
+    /* Unicode character for a downward-pointing triangle */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+option {
+    white-space: pre-wrap;
+}
+
+.footer {
 
     padding: 22px 16%;
     background: var(--second-bg-color);
@@ -371,13 +452,13 @@ form .send-btn:hover{
     gap: 2rem;
 }
 
-.copyright p{
+.copyright p {
     font-size: 15px;
     font-weight: 400;
     color: var(--other-color);
 }
 
-.scroll-top i{
+.scroll-top i {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -390,63 +471,74 @@ form .send-btn:hover{
 }
 
 @media (max-width: 1700px) {
-    header{
+    header {
         padding: 20px 8%;
     }
-    header.sticky{
+
+    header.sticky {
         padding: 14px 8%;
     }
-    section{
+
+    section {
         padding: 90px 8% 80px !important;
     }
-    .footer{
+
+    .footer {
         padding: 18px 8%;
     }
-    .logo{
+
+    .logo {
         font-size: 28px;
     }
 }
 
 @media (max-width: 1380px) {
-    header{
+    header {
         padding: 20px 5%;
     }
-    header.sticky{
+
+    header.sticky {
         padding: 14px 5%;
     }
-    section{
+
+    section {
         padding: 90px 5% 80px;
     }
-    .footer{
+
+    .footer {
         padding: 18px 5%;
     }
-    .hero{
+
+    .hero {
         height: 90vh;
         background-position: center;
     }
 }
 
-@media (max-width: 1290px){
-    box{
+@media (max-width: 1290px) {
+    box {
         padding: 40px 40px 46px;
     }
-    .box img{
+
+    .box img {
         width: 100%;
         height: 60px;
         max-width: 60px;
     }
-    .box h3{
+
+    .box h3 {
         font-size: 21px;
     }
-} 
+}
 
-@media (max-width: 1240px){
-    .about{
+@media (max-width: 1240px) {
+    .about {
         grid-template-columns: 1fr;
         gap: 2rem;
         text-align: center;
     }
-    .about-img img{
+
+    .about-img img {
         text-align: center;
         width: 100%;
         height: 400px;
@@ -455,24 +547,28 @@ form .send-btn:hover{
         object-fit: cover;
         margin: 0 auto;
     }
-    :root{
+
+    :root {
         --h1-font: 4rem;
         --h2-font: 2.2rem;
         --p-font: 15px;
     }
 }
 
-@media (max-width: 950px){
-    :root{
+@media (max-width: 950px) {
+    :root {
         --h1-font: 3.5rem;
     }
-    .social{
+
+    .social {
         margin-bottom: 20px;
     }
-    #menu-icon{
+
+    #menu-icon {
         display: block;
     }
-    .navlist{
+
+    .navlist {
         position: absolute;
         top: 100%;
         right: -100%;
@@ -483,28 +579,31 @@ form .send-btn:hover{
         background: var(--bg-color);
         transition: all .50s ease;
     }
-    .navlist a{
+
+    .navlist a {
         display: block;
         padding: 17px;
         font-size: 22px;
     }
-    .navlist.active{
+
+    .navlist.active {
         right: 0;
     }
 }
 
-@media (max-width: 680px){
-    .main-content p{
+@media (max-width: 680px) {
+    .main-content p {
         width: 100%;
     }
 }
 
-@media (max-width: 470px){
-    :root{
+@media (max-width: 470px) {
+    :root {
         --h1-font: 3rem;
         --h2-font: 2rem;
     }
-    .about-img img{
+
+    .about-img img {
         text-align: center;
         width: 100%;
         height: 300px;
@@ -515,27 +614,29 @@ form .send-btn:hover{
     }
 }
 
-.box a{
+.box a {
     font-size: var(--p-font);
     font-weight: 500;
     color: var(--other-color);
     margin-left: 40px;
     transition: all .50s ease;
 }
-.box a:hover{
+
+.box a:hover {
     color: var(--main-color);
     text-shadow: 3px 3px 20px var(--main-color), -2px 1px 30px var(--text-color);
 }
 
 
-.row-icon a{
+.row-icon a {
     font-size: var(--p-font);
     font-weight: 500;
     color: var(--other-color);
     margin-left: 40px;
     transition: all .50s ease;
 }
-.row-icon a:hover{
+
+.row-icon a:hover {
     color: var(--main-color);
     text-shadow: 3px 3px 20px var(--main-color), -2px 1px 30px var(--text-color);
 }
