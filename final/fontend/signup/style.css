@@ -176,7 +176,8 @@ header.sticky{
     border-radius: 30px;
     flex-direction: column;
     align-items: center;
-  }
+    padding-top: 20px; /* Adjust the pixel value as needed */
+}
 
   .text{
     color: var(--main-color);
@@ -184,7 +185,7 @@ header.sticky{
   }
   
   /* Full-width inputs */
-  input[type=text], input[type=password] {
+  input[type=text], input[type=password], input[type=date],[type=email] {
     width: 100%;
     padding: 8px 12px;
     margin: 10px 0;
@@ -211,7 +212,7 @@ header.sticky{
     opacity: 0.8;
   }
   
-  .regis{
+  .log{
     color: white;
     font-size: 12px;
     display: flex;
@@ -434,4 +435,185 @@ input[type="email"] {
     color: #ff3860;
     font-size: 10px;
     height: 13px;
+}
+
+.container{
+    max-width: 1000px;
+    width: 100%;
+    padding: 25px 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+  }
+
+  .container .title{
+    font-size: 25px;
+    
+    font-weight: 500;
+    position: relative;
+  }
+  .container .title::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #71b7e6, #13bbff);
+  }
+
+  .content form .user-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+  }
+
+  form .user-details .input-box{
+    margin-bottom: 15px;
+    width: calc(100% / 2 - 20px);
+  }
+
+  form .input-box span.details{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: white;
+  }
+
+  .user-details .input-box input{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .user-details .input-box input:focus,
+  .user-details .input-box input:valid{
+    border-color: #13bbff;
+  }
+   form .gender-details .gender-title{
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+   }
+   form .category{
+     display: flex;
+     width: 80%;
+     margin: 14px 0 ;
+     justify-content: space-between;
+     
+   }
+   form .category label{
+     display: flex;
+     align-items: center;
+     cursor: pointer;
+     
+   
+   }
+   form .category label .dot{
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background: #d9d9d9;
+    border: 5px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+#dot-1:checked ~ .category label .one,
+ #dot-2:checked ~ .category label .two,
+ #dot-3:checked ~ .category label .three{
+   background: #13bbff;;
+   border-color: #d9d9d9;
+   color: white;
+ }
+ form input[type="radio"]{
+    display: none;
+    
+  }
+  form .button{
+    height: 45px;
+    margin: 35px 0
+  }
+
+  form .button input{
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #71b7e6, #13bbff);
+  }
+
+  form .button input:hover{
+    /* transform: scale(0.99); */
+    background: linear-gradient(-135deg, #71b7e6, #13bbff);
+    }
+   @media(max-width: 584px){
+   .container{
+    max-width: 100%;
+  }
+  form .user-details .input-box{
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  form .category{
+    width: 100%;
+    
+  }
+  .content form .user-details{
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+  .user-details::-webkit-scrollbar{
+    width: 5px;
+  }
+  }
+  @media(max-width: 459px){
+    .container .content .category{
+      flex-direction: column;
+    }
+  }
+  .input-box input[type="date"] {
+    background-color: transparent; /* or background-color: initial; */
+  }
+  
+  .gender-details .category label .gender {
+    color: white;
+  }
+
+  .input-control input {
+    border: 2px solid #f0f0f0;
+	border-radius: 4px;
+	display: block;
+	font-size: 12px;
+	padding: 10px;
+	width: 100%;
+}
+.input-control input:focus {
+  outline: 0;
+}
+
+.input-control.success input {
+  border-color: #09c372;
+}
+
+.input-control.error input {
+  border-color: #ff3860;
+}
+
+.input-control .error {
+  color: #ff3860;
+  font-size: 9px;
+  height: 13px;
 }
