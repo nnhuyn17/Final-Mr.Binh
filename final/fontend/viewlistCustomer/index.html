@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Personal Portfolio Website</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">Code<span>Xplore</span></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="main-content" data-aos="fade-in">
+            <h2>List <span>Customer</span></h2>
+            <div class="customerTable">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Full Name</th>
+                            <th>Date of Birth</th>
+                            <th>Position</th>
+                            <th>Phone Number</th>
+                            <th>Company</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customerTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer">
+        <div class="copyright">
+            <p>2023 Ngoc Huyen, All Rights Reversed.</p>
+        </div>
+
+        <div>
+            <a href="#home" class="scroll-top">
+                <i class="ri-arrow-up-s-fill"></i>
+            </a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>
