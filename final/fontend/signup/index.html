@@ -16,10 +16,11 @@
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
-  <header>
-    <a href="#" class="logo">Code<span>Xplore</span></a>
-    <div class="bx bx-menu" id="menu-icon"></div>
-  </header>
+  <body>
+    <header>
+      <a href="#" class="logo">Code<span>Xplore</span></a>
+      <div class="bx bx-menu" id="menu-icon"></div>
+    </header>
 
   <section class="hero" id="home">
     <div class="signup">
@@ -27,30 +28,65 @@
         <h2>Sign Up</h2>
       </div>
       <div class="container">
-        <form id="form" action="/">
-            <div class="input-control">
-                <label for="username">User Name</label>
-                <input id="username" name="username" type="text">
-                <div class="error"></div>
+        <div class="content">
+          <form action="#" name ="Formfill">
+            <div class="user-details">
+              <div class="input-box">
+                <span class="details">User Name</span>
+                <input type="email" name = "Username" placeholder="Enter your name" required>
+              </div>
+              <div class="input-box">
+                <span class="details">Full Name</span>
+                <input type="text" placeholder="Enter your username" required>
+              </div>
+              <div class="input-box">
+                <span class="details">Date of Birth</span>
+                <input type="date" placeholder="Enter your DoB" required>
+              </div>
+              
+              <div class="input-box">
+                <span class="details">Position</span>
+                <input type="text" placeholder="Enter your position" required>
+              </div>
+              <div class="input-box">
+                <span class="details">Company</span>
+                <input type="text" placeholder="Enter your company" required>
+              </div>
+              <div class="input-box">
+                <span class="details">Phone Number</span>
+                <input type="text" placeholder="Enter your number" required>
+              </div>
+              <div class="input-box">
+                <span class="details">Password</span>
+                <input type="password" name = "Password" placeholder="Enter your password" required>
+              </div>
+              <div class="input-box">
+                <span class="details">Confirm Password</span>
+                <input type="password" name = "cPassword" placeholder="Confirm your password" required>
+              </div>
             </div>
-            <div class="input-control">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="text">
-                <div class="error"></div>
+            <div class="gender-details">
+              <input type="radio" name="gender" id="dot-1">
+              <input type="radio" name="gender" id="dot-2">
+              <input type="radio" name="gender" id="dot-3">
+              <span class="gender-title">Gender</span>
+              <div class="category">
+                <label for="dot-1">
+                <span class="dot one"></span>
+                <span class="gender">Male</span>
+              </label>
+              <label for="dot-2">
+                <span class="dot two"></span>
+                <span class="gender">Female</span>
+              </label>
+              <label for="dot-3">
+                <span class="dot three"></span>
+                <span class="gender">Prefer not to say</span>
+                </label>
+              </div>
             </div>
-            <div class="input-control">
-                <label for="password">Password</label>
-                <input id="password"name="password" type="password">
-                <div class="error"></div>
-            </div>
-            <div class="input-control">
-                <label for="password2">Confirm Password</label>
-                <input id="password2"name="password2" type="password">
-                <div class="error"></div>
-            </div>
-
             <div class="log">
-                <p class="log"><i><a class="log" href="../login/index.html">Do not have account?</a></i></p>
+                <p class="log"><i><a class="log" href="../login/index.html">Do have account?</a></i></p>
               </div>
               <button type="submit" onClick="navigateToPath('../admin/homepageBlog/index.html')">Sign Up</button>
         </form>
