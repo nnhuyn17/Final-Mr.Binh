@@ -15,6 +15,8 @@ const db = require("./config/database")
 const configViewEngine = require("./config/viewEngine")
 const app = express();
 
+const port = process.env.PORT || 8888;
+
 const pathUrl = process.env.SWAGGER_URL || `http://localhost:${port}`;
 
 // middleware
@@ -56,8 +58,6 @@ app.use(
   swaggerUi.serve,
   swaggerUi.setup(specs)
 );
-
-const port = 8081;
 
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server is running on port ${port}`);
