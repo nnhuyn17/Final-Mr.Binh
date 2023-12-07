@@ -9,7 +9,6 @@ const swaggerJsdoc = require("swagger-jsdoc")
 const swaggerUi = require("swagger-ui-express");
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
 
 const db = require("./config/database")
 const configViewEngine = require("./config/viewEngine")
