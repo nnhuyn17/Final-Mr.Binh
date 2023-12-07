@@ -5,33 +5,45 @@
  *     User:
  *       type: object
  *       required:
- *         - name
+ *         - email
  *         - password
  *         - role
  *       properties:
  *         id:
- *           type: string
+ *           type: integer
  *           description: The auto-generated id of the user
- *         name:
+ *         email:
  *           type: string
- *           description: The name of the user
+ *           description: The email of user
+ *         full_name:
+ *           type: string
+ *           description: The full name of the user
+ *         date_of_birth:
+ *           type: date
+ *           description: DOB of user
+ *         position:
+ *           type: string
+ *           description: Position of user in the company
+ *         company: 
+ *           type: string
+ *           description: Name of the company that the user works for
  *         password:
  *           type: string
  *           description: The user's password
  *         role:
  *           type: string
- *           description: The role of the user (e.g., admin, user)
- *         createdAt:
- *           type: string
- *           format: date
- *           description: The date the user was added
+ *           enum:
+ *             - user
+ *             - admin
+ *           default: user
+ *          
  */
 /**
  * @swagger
  * tags:
  *   name: Users
  *   description: The users managing API
- * /user:
+ * /getAllDemo:
  *   get:
  *     summary: Lists all the users
  *     tags: [Users]
@@ -44,25 +56,7 @@
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/User'
- *   post:
- *     summary: Create a new user
- *     tags: [Users]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/User'
- *     responses:
- *       201:
- *         description: The created user.
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/User'
- *       500:
- *         description: Some server error
- * /user/{id}:
+ * /getByID/{id}:
  *   get:
  *     summary: Get the user by id
  *     tags: [Users]
@@ -78,12 +72,13 @@
  *         description: The user response by id
  *         content:
  *           application/json:
- *             schema:
+ *             schema: 
  *               $ref: '#/components/schemas/User'
- *       404:
- *         description: The user was not found
- *   put:
- *     summary: Update the user by the id
+ *       500:
+ *         description: Error fetching user ID
+ * /getFullNameByID/{id}:
+ *   get:
+ *     summary: Get the full name of the user by id
  *     tags: [Users]
  *     parameters:
  *       - in: path
@@ -92,39 +87,27 @@
  *           type: string
  *         required: true
  *         description: The user id
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/User'
  *     responses:
  *       200:
- *         description: The user was updated
+ *         description: The full name of the user by id
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/User'
- *       404:
- *         description: The user was not found
+ *             schema: 
+ *               type: object
+ *               properties:
+ *                 Status:
+ *                   type: string
+ *                   description: The status of the response
+ *                 Account:
+ *                   type: object
+ *                   properties:
+ *                     full_name:
+ *                       type: string
+ *                       description: The full name of the user
  *       500:
- *         description: Some error happened
- *   delete:
- *     summary: Remove the user by id
- *     tags: [Users]
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: string
- *         required: true
- *         description: The user id
- *     responses:
- *       204:
- *         description: The user was deleted
- *       404:
- *         description: The user was not found
+ *         description: Error fetching user ID
  */
+
 
 const express = require("express")
 const userRouter = express.Router();

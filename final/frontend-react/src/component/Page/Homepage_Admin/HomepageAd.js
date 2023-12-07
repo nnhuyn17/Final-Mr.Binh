@@ -2,20 +2,20 @@ import classNames from 'classnames/bind';
 import styles from './Homepage_Admin.module.scss';
 import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
-
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function Homepage_Admin() {
   const [selectedDate, setSelectedDate] = useState(formatDate(new Date()));
   const [meetings, setMeetings] = useState([]);
-  const pathBackEnd = ""
+  const pathBackEnd = "http://localhost:8081";
 
   useEffect(() => {
     // Function to fetch meetings for the current date
     const fetchMeetings = async () => {
       try {
-        const response = await fetch(`${pathBackEnd}/getByDate/${selectedDate}`, {
+        const response = await fetch(`http://localhost:8081/getByDate/${selectedDate}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -58,12 +58,12 @@ function Homepage_Admin() {
           Well <span>Comeback</span>
         </h1>
         <div className={cx('main-btn')}>
-          <a className={cx('btn')}>
+          <Link to ='yourBlog' className={cx('btn')}>
             View your blog
-          </a>
-          <a href="" className={cx('btn', 'btn2')}>
+          </Link>
+          <Link to = 'viewBooking' className={cx('btn', 'btn2')}>
             Your Booking
-          </a>
+          </Link>
         </div>
       </div>
       <div className={cx('container')}>
@@ -76,16 +76,44 @@ function Homepage_Admin() {
               onChange={(e) => setSelectedDate(e.target.value)}
             />
           </div>
-          <h1>
-            Today, {selectedDate}<span> </span>
-          </h1>
-          <div className={cx('content')}>
-            {meetings.map((meeting) => (
-              <li key={meeting.id}>
-                {meeting.time_range}: {meeting.content} ({meeting.status})
-              </li>
-            ))}
-          </div>
+          {meetings.length === 0 ? (
+            // If there are no meetings
+            <h1>
+              {selectedDate === formatDate(new Date())
+                ? `Today, ${selectedDate}`
+                : selectedDate < formatDate(new Date())
+                ? `On ${selectedDate},`
+                : `On ${selectedDate},`}
+              <h2>
+                {selectedDate === formatDate(new Date())
+                  ? "You're free today!!"
+                  : "You did not have a meeting."}
+              </h2>
+            </h1>
+          ) : (
+            // If there are meetings
+            <>
+              <h1 >
+                {selectedDate === formatDate(new Date())
+                  ? `Today, ${selectedDate}`
+                  : selectedDate < formatDate(new Date())
+                  ? `On ${selectedDate},`
+                  : `On ${selectedDate},`}
+              </h1>
+              <h2>
+                {selectedDate === formatDate(new Date())
+                  ? "You have"
+                  : "You had"}
+              </h2>
+              <ul>
+                {meetings.map((meeting) => (
+                  <li className = {cx('li-de')} key={meeting.id}>
+                    {meeting.time_range}: {meeting.content} ({meeting.status})
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
       </div>
     </section>

@@ -17,13 +17,8 @@ const app = express();
 
 const port = process.env.PORT || 8888;
 
-const pathUrl = process.env.SWAGGER_URL || `http://localhost:${port}`;
 
-// middleware
-app.use(cors({
-  origin: process.env.UI_API, // Allow requests from this origin
-  credentials: true, // Allow cookies and credentials
-}));
+app.use(cors());
 app.use(express.json());
 
 // Config template engine
@@ -46,7 +41,7 @@ const options = {
     },
     servers: [
       {
-        url: pathUrl,
+        url: "http://localhost:8081/",
       },
     ],
   },
@@ -64,6 +59,10 @@ app.listen(port, '0.0.0.0', () => {
 });
 
 db.query('SELECT 1 + 1', (error, results, fields) => {
-  if (error) throw error;
+  if (error) {
+    console.error('Error connecting to MySQL:', error.message);
+    return;
+  }
   console.log('Connected to MySQL!');
 });
+

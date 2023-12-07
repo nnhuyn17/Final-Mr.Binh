@@ -10,6 +10,7 @@ import Loader from './component/Loader/Loader';
 import ViewBookingAdmin from './component/Page/ViewBooking_Admin/ViewBookingAdmin';
 import ViewUserAdmin from './component/Page/ViewUser_Admin';
 import Signup from './component/Page/Signup/Signup';
+import HomepageBlog_admin from './component/Page/HomepageBlog_admin/HomepageBlog_admin';
 
 // Public routes
 const publicRoutes = [
@@ -23,7 +24,8 @@ const publicRoutes = [
 const privateRoutes = [
   { path: '/homeAd/viewBooking', element: <ViewBookingAdmin /> },
   { path: '/homeAd', element: <Homepage_Admin /> },
-  { path: '/homeAd/viewUser', element: <ViewUserAdmin /> }
+  { path: '/homeAd/viewUser', element: <ViewUserAdmin /> },
+  { path: '/homeAd/yourBlog', element: <HomepageBlog_admin /> }
 
 ];
 

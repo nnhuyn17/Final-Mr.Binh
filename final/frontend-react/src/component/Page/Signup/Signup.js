@@ -6,7 +6,7 @@ import { Link , useNavigate} from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function Signup() {
-  const pathBackEnd = ""
+  const pathBackEnd = "http://localhost:8081";
 
   const navigate = useNavigate();
 
@@ -43,7 +43,7 @@ function Signup() {
 
     try {
       // Example using fetch API, replace with your actual API endpoint
-      const response = await fetch(`${pathBackEnd}/signUp`, {
+      const response = await fetch(`http://localhost:8081/signUp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

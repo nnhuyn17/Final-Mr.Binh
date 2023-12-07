@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
-import styles from './Homepage.module.scss';
+import styles from './HomepageBlog_admin.module.scss';
 import about_img from '../../../assets/img/3.jpg';
 import serice1 from "../../../assets/img/s-1.svg"
 import serice2 from "../../../assets/img/s-2.svg"
@@ -10,9 +10,9 @@ import portfolio from "../../../assets/img/port-1.jpg"
 // import { Link, Navigate } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
-function Homepage() {
+function HomepageBlog_admin() {
   const pathBackEnd = "http://localhost:8081";
-
+  
   const [date, setDate] = useState('');
   const [time_range, setTime] = useState('9am-11am');
   const [content, setContent] = useState('');
@@ -30,21 +30,22 @@ function Homepage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const fullDate = `${date}`;
-    const isConfirmed = window.confirm('Are you sure you want to submit?');
-    if (isConfirmed) {
-      fetch(`http://localhost:8081/createMeeting`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          user_id: localStorage.getItem('accountID'), // Replace with the actual user ID
-          date: fullDate,
-          time_range: time_range,
-          content,
-          status: 'pending', // Default status
-        }),
-      })
+
+    // Call your API endpoint here with the form data
+    // Example using fetch:
+    fetch(`http://localhost:8081/createMeeting`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user_id: localStorage.getItem('accountID'), // Replace with the actual user ID
+        date: fullDate,
+        time_range: time_range,
+        content,
+        status: 'pending', // Default status
+      }),
+    })
       .then(response => response.json())
       .then(data => {
         console.log('Success:', data);
@@ -54,18 +55,6 @@ function Homepage() {
         console.error('Error:', error);
         // Add any additional error handling logic
       });
-      
-      console.log('Date:', date);
-      console.log('Time Range:', time_range);
-      console.log('Content:', content);
-
-      alert('Thanks for your submit. We will try to respond to you as soon as possible via email ^^');
-
-    }
-
-    // Call your API endpoint here with the form data
-    // Example using fetch:
-
   };
 
   return (
@@ -354,7 +343,7 @@ function Homepage() {
       <section className={cx('contact')} id="contact">
         <div className={cx('center-text')} >
           <h2>
-            Contact <span>Me</span>
+            Add <span>activity</span>
           </h2>
         </div>
         <div className={cx('form-container')} >
@@ -399,13 +388,13 @@ function Homepage() {
                 required=""
                 value={content}
                 onChange={handleContentChange}
-
               />
             </div>
             <button className={cx('input-field')} type="submit"
               name=""
               defaultValue="Send Message"
             > submit
+
             </button>
           </form>
         </div>
@@ -415,4 +404,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default HomepageBlog_admin;

@@ -40,13 +40,18 @@ li{
 .no-color{
     color: white;
     font-size: 15px;
-    font-weight: 700;
     margin-bottom: 10px;
     line-height: 1.4;
 }
 
+.no-color:hover{
+    color: #2d343f;
+    background-color:var(--main-color);
+    color: #2d343f;
+}
 .text-menu{
     font-size: 20px;
     font-weight: 600;
     color: var(--other-color);
 }
+

@@ -27,7 +27,7 @@ function UserDialog({ onClose }) {
               <ul>
               <li><h3 className={cx('text-menu')}>Menu </h3></li>
 
-                <li>
+                <li className={cx('no-color')}>
                 <Link to={`/home/viewBookingUser/${localStorage.getItem("accountID")}`} className={cx('no-color')}>
                   View your Booking
                 </Link>
@@ -43,9 +43,11 @@ function UserDialog({ onClose }) {
     <div className={cx('dialog')}>
     <div className={cx('wrapper-items')}>
         <ul>
-          <li> <Link to = "/homeAd/viewBooking">View your Booking</Link></li>
-          <li><Link to = "/homeAd/viewUser" >View Users</Link></li>
-          <li onClick={handleQuit}>Log out</li>
+        <li><h3 className={cx('text-menu')}>Menu </h3></li>
+
+          <li className={cx('no-color')}> <Link to = "/homeAd/viewBooking" className={cx('no-color')}>View your Booking</Link></li>
+          <li className={cx('no-color')}> <Link to = "/homeAd/viewUser" className={cx('no-color')} >View Users</Link></li>
+          <li onClick={handleQuit} className={cx('no-color')} >Log out</li>
         </ul>
     </div>
 </div>

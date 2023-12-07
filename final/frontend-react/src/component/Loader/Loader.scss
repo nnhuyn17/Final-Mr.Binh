@@ -15,7 +15,7 @@
     position: absolute;
     width: 10px;
     height: 30px;
-    background-color: #ff6a00;
+    background-color: var(--main-color);
     border-radius: 5px;
     animation: loader_51899 1.5s ease-in-out infinite;
   }

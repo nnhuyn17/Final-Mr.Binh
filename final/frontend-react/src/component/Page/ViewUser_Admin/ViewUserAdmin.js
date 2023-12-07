@@ -8,11 +8,11 @@ const cx = classNames.bind(styles);
 
 function ViewUserAdmin() {
   const [data, setData] = useState([]);
-  const pathBackEnd = ""
+  const pathBackEnd = "http://localhost:8081";
 
   const fetchData = () => {
     // Fetch data from the server
-    fetch(`${pathBackEnd}/getAllDemo`)
+    fetch(`http://localhost:8081/getAllDemo`)
     .then(response => response.json())
     .then(data => {
       setData(data.accounts);
