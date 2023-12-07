@@ -1,28 +1,54 @@
 import classNames from 'classnames/bind';
 import styles from './Homepage_Admin.module.scss';
 import React, { useState, useEffect } from 'react';
+import DatePicker from 'react-datepicker';
 
 
-// import { Link, Navigate } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function Homepage_Admin() {
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(formatDate(new Date()));
+  const [meetings, setMeetings] = useState([]);
+  const pathBackEnd = ""
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      // Update the current date every second
-      setCurrentDate(new Date());
-    }, 1000);
+    // Function to fetch meetings for the current date
+    const fetchMeetings = async () => {
+      try {
+        const response = await fetch(`${pathBackEnd}/getByDate/${selectedDate}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          if (data.Status === 'Success') {
+            setMeetings(data.Data);
+          } else {
+            console.error('Failed to fetch meetings:', data);
+          }
+        } else {
+          console.error('Failed to fetch meetings. HTTP error:', response.status);
+        }
+      } catch (error) {
+        console.error('Error fetching meetings:', error);
+      }
+    };
+  
+    // Fetch meetings when the component mounts
+    fetchMeetings();
+  }, [selectedDate]); 
 
-    // Cleanup interval on component unmount
-    return () => clearInterval(intervalId);
-  }, []); // Empty dependency array to run the effect only once on mount
-
-  // Extract day, date, and time from the current date
-  const day = currentDate.toLocaleString('en-US', { weekday: 'long' });
-  const date = currentDate.toLocaleDateString();
-  const time = currentDate.toLocaleTimeString();
+  function formatDate(date) {
+    const year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    month = month < 10 ? `0${month}` : month;
+    let day = date.getDate();
+    day = day < 10 ? `0${day}` : day;
+    return `${year}-${month}-${day}`;
+  }
 
   return (
     <section className={cx('hero')} id="home">
@@ -32,7 +58,7 @@ function Homepage_Admin() {
           Well <span>Comeback</span>
         </h1>
         <div className={cx('main-btn')}>
-          <a href="/final/fontend/admin/homepageBlog/index.html" className={cx('btn')}>
+          <a className={cx('btn')}>
             View your blog
           </a>
           <a href="" className={cx('btn', 'btn2')}>
@@ -42,17 +68,25 @@ function Homepage_Admin() {
       </div>
       <div className={cx('container')}>
         <div className={cx('left')}>
-          <h1>Today,</h1>
+          <div>
+            <label>Select Date: </label>
+            <input
+              type="date"
+              value={selectedDate}
+              onChange={(e) => setSelectedDate(e.target.value)}
+            />
+          </div>
           <h1>
-          {day} <span>{date}</span>
+            Today, {selectedDate}<span> </span>
           </h1>
           <div className={cx('content')}>
-                
+            {meetings.map((meeting) => (
+              <li key={meeting.id}>
+                {meeting.time_range}: {meeting.content} ({meeting.status})
+              </li>
+            ))}
           </div>
         </div>
-
-
-        
       </div>
     </section>
 

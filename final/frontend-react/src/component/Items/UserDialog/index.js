@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import styles from './UserDialog.module.scss';
 import classNames from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
-import ViewBookingAdmin from '../../Page/ViewBooking_Admin/ViewBookingAdmin';
-import ViewBookingUser from '../../Page/ViewBooking_User/ViewBookingUser';
+
 
 const cx = classNames.bind(styles);
 
 function UserDialog({ onClose }) {
+  
   const navigate = useNavigate();
 
   const handleQuit = () => {
@@ -25,8 +25,14 @@ function UserDialog({ onClose }) {
       <div className={cx('dialog')}>
           <div className={cx('wrapper-items')}>
               <ul>
-                <li> <Link to = "/home/viewBooking">View your Booking</Link></li>
-                <li onClick={handleQuit}>Log out</li>
+              <li><h3 className={cx('text-menu')}>Menu </h3></li>
+
+                <li>
+                <Link to={`/home/viewBookingUser/${localStorage.getItem("accountID")}`} className={cx('no-color')}>
+                  View your Booking
+                </Link>
+                </li>
+                <li className={cx('no-color')} onClick={handleQuit}>Log out</li>
               </ul>
           </div>
       </div>
@@ -34,11 +40,11 @@ function UserDialog({ onClose }) {
   }
   else{
     return(
-
     <div className={cx('dialog')}>
     <div className={cx('wrapper-items')}>
         <ul>
           <li> <Link to = "/homeAd/viewBooking">View your Booking</Link></li>
+          <li><Link to = "/homeAd/viewUser" >View Users</Link></li>
           <li onClick={handleQuit}>Log out</li>
         </ul>
     </div>

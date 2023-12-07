@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Login.module.scss';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 const cx = classNames.bind(styles);
 
 function Login() {
+  const pathBackEnd = ""
+
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -13,7 +17,7 @@ function Login() {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch('http://localhost:8081/login', {
+      const response = await fetch(`${pathBackEnd}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -61,7 +65,7 @@ function Login() {
     <section className={cx("hero")} >
       <div className={cx("Login")}>
         <div className={cx("text")}>
-          <h2>Login</h2>
+          <h1>Login</h1>
         </div>
         <div className={cx("form")}>
           <label for="uname">
@@ -90,8 +94,8 @@ function Login() {
           <div className={cx("regis")}>
             <p className={cx("regis")}>
               <i>
-                <a className={cx("regis")} href="/signup/index.html">
-                  Do not have an account?
+                <a className={cx("regis")} >
+                <Link  className={cx("regis")} to = "/signup">Do not have an account?</Link>
                 </a>
               </i>
             </p>

@@ -2,8 +2,6 @@
 import styles from './Footer.module.scss'
 import className from 'classnames/bind';
  
-
-
 const cx = className.bind(styles);
 
 function Footer(){
@@ -15,7 +13,7 @@ function Footer(){
         </div>
 
         <div>
-            <a href='#home' className={cx('scroll-top')}>
+            <a href='#' className={cx('scroll-top')}>
                 <i class='ri-arrow-up-s-fill'></i> 
             </a>
         </div>

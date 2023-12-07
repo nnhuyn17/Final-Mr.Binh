@@ -80,12 +80,38 @@ const UpdateMeetingByID = async (req, res) => {
   });
 };
 
+const getByDate = async (req, res) => {
+  const date = req.params.date; 
+  const sql = "SELECT * FROM meeting_requests where date = ?";
+  const values = [date];
+  db.query(sql, values, (err, result) => {
+      if (err) {
+      return res
+          .status(500)
+          .json({ Error: "Error fetching by date" });
+      }
+      return res.status(200).json({ Status: "Success", Data: result });
+  });
+};
 
+const getAllBookingByUserID = async (req, res) => {
+  const user_id = req.params.user_id; 
+  const sql = "SELECT * FROM meeting_requests where user_id = ?";
+  const values = [user_id];
 
+  db.query(sql , values ,  (err, result) => {
+    if (err) {
+      return res.status(500).json({ Error: "Error fetching booking req" });
+    }
+    return res.status(200).json({ Status: "Success", Data: result });
+  });
+};
 module.exports = {
   getAllDemo,
   createMeeting,
   deleteMeetingbyID,
   getDatafromUserAndMeeting,
-  UpdateMeetingByID
+  UpdateMeetingByID,
+  getByDate,
+  getAllBookingByUserID,
 };

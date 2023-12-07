@@ -9,13 +9,14 @@ import Header from './component/Header';
 import Loader from './component/Loader/Loader';
 import ViewBookingAdmin from './component/Page/ViewBooking_Admin/ViewBookingAdmin';
 import ViewUserAdmin from './component/Page/ViewUser_Admin';
-
+import Signup from './component/Page/Signup/Signup';
 
 // Public routes
 const publicRoutes = [
   { path: '/home', element: <Homepage /> },
   { path: '/', element: <Login /> },
-  { path: '/home/viewBooking', element: <ViewBookingUser/>}
+  { path: '/home/viewBookingUser/:user_id', element: <ViewBookingUser/>},
+  { path: '/signup', element: <Signup/>}
 ];
 
 // Private routes

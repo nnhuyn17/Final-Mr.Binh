@@ -1,24 +1,52 @@
 .dialog {
-
-    background-color: lightblue;
     position: fixed;
-    top: 13%;
+    top: 10%;
     right: 8%;
+    display: flex;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 5px var(--main-color);
+    background: #2d343f;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    border-radius: 8px;
 }
 
 h2 {
     color: var(--font-color);
     font-weight: 900;
     font-size: 20px;
-    margin-bottom: 25px;
 }
 
 .input:focus {
     border: 2px solid var(--input-focus);
 }
 
+.wrapper-items ul li{
+    width: 100%;
+}
+li{
+    cursor: pointer;
+}
+
 .wrapper-items {
     display: flex;
     flex-direction: column;
-    margin: 18px 0;
+}
+.wrapper-items li{
+    padding: 10px 20px;
+}
+
+.no-color{
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.text-menu{
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--other-color);
 }

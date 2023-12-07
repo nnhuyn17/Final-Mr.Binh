@@ -8,20 +8,27 @@ const cx = classNames.bind(styles);
 
 function ViewBookingUser() {
   const [meetingData, setMeetingData] = useState([]);
+  const pathBackEnd = ""
 
   useEffect(() => {
-    fetch('http://localhost:8081/meetingDemo/')
-      .then(response => response.json())
-      .then(data => {
-        setMeetingData(data.accounts);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
+    const fetchMeetingData = async () => {
+      try {
+        const response = await fetch(`${pathBackEnd}/getAllBookingByUserID/${localStorage.getItem("accountID")}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+        setMeetingData(data.Data);
+      } catch (error) {
+  
+      }
+    };
+
+    fetchMeetingData();
   }, []);
 
   const handleDeleteMeeting = (id) => {
-    fetch(`http://localhost:8081/deleteMeeting/${id}`, {
+    fetch(`${pathBackEnd}/deleteMeeting/${id}`, {
       method: 'DELETE',
     })
       .then(response => {

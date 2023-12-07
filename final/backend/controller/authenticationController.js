@@ -52,57 +52,53 @@ const login = async (req, res, next) => {
         
       });
 }
-// const register = async (req, res, next) => {
-//   let obj = {
-//     email: req.body.email,
-//     password: req.body.password,
-//     role: "account",
-//   };
+const signUp = async (req, res, next) => {
+  const { email, password, full_name, date_of_birth, position , company} = req.body;
 
-//   // Validation Register
-//   const errors = validateRegisterInput(obj).errors;
-//   const isValid = validateRegisterInput(obj).isValid;
+  // Check if the email already exists
+  const checkEmailQuery = 'SELECT * FROM account WHERE email = ?';
+  db.query(checkEmailQuery, [email], (err, result) => {
+    if (err) {
+      return res.status(500).json({
+        status: 'failed',
+        error: 'Internal Server Error',
+      });
+    }
 
-//   // if invalid / doesn't pass validation
-//   if (!isValid) {
-//     return res.status(errors.status).json(errors);
-//   }
+    if (result.length > 0) {
+      return res.status(401).json({
+        status: 'error',
+        message: 'Email already exists.',
+      });
+    }
 
-//   // Check if the email already exists
-//   const checkEmailQuery = 'SELECT * FROM account WHERE email = ?';
-//   db.query(checkEmailQuery, [obj.email], (err, result) => {
-//     if (err) {
-//       return res.status(500).json({
-//         status: "failed",
-//         error: "Internal Server Error",
-//       });
-//     }
+    // If email doesn't exist, insert the new account
+    const insertAccountQuery = `
+        INSERT INTO account 
+        (email, password, full_name, date_of_birth, position,company,role)
+        VALUES (?, ?, ?, ?, ?, ? , ?)
+      `;
+      const newUserValues = [email, password, full_name, date_of_birth, position, company , 'user'];
 
-//     if (result.length > 0) {
-//       return res.status(401).json({
-//         status: "error",
-//         error: Email "${obj.email}" already exists!,
-//       });
-//     }
 
-//     // If email doesn't exist, insert the new account
-//     const insertaccountQuery = 'INSERT INTO account SET ?';
-//     db.query(insertaccountQuery, obj, (err, result) => {
-//       if (err) {
-//         return res.status(400).json(err);
-//       }
-
-//       res.json({
-//         status: "success",
-//         message: "Successfully create account!",
-//         data: result,
-//       });
-//     });
-//   });
-// };
-
+      db.query(insertAccountQuery, newUserValues, (err, result) => {
+        if (err) {
+          return res.status(400).json({
+            status: 'failed',
+            error: 'Bad Request',
+          });
+        }
+      
+        res.json({
+          status: 'success',
+          message: 'Successfully created account!',
+          data: result,
+        });
+    });
+  });
+};
 
 module.exports = {
   login,
-//   register
+  signUp
 };

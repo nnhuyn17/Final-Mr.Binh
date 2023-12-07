@@ -11,7 +11,8 @@ import portfolio from "../../../assets/img/port-1.jpg"
 const cx = classNames.bind(styles);
 
 function Homepage() {
-
+  const pathBackEnd = ""
+  
   const [date, setDate] = useState('');
   const [time_range, setTime] = useState('9am-11am');
   const [content, setContent] = useState('');
@@ -28,17 +29,18 @@ function Homepage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const fullDate = `${date}`;
 
     // Call your API endpoint here with the form data
     // Example using fetch:
-    fetch('http://localhost:8081/createMeeting', {
+    fetch(`${pathBackEnd}/createMeeting`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         user_id: localStorage.getItem('accountID'), // Replace with the actual user ID
-        date,
+        date: fullDate,
         time_range: time_range,
         content,
         status: 'pending', // Default status

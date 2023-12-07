@@ -15,11 +15,19 @@ const db = require("./config/database")
 const configViewEngine = require("./config/viewEngine")
 const app = express();
 
-// middleware
-app.use(express.json());
-app.use(cors());
+const pathUrl = process.env.SWAGGER_URL || `http://localhost:${port}`;
 
+// middleware
+app.use(cors({
+  origin: process.env.UI_API, // Allow requests from this origin
+  credentials: true, // Allow cookies and credentials
+}));
+app.use(express.json());
+
+// Config template engine
 configViewEngine(app)
+
+
 // define all our routes
 app.use("/", userRoutes);
 app.use("/", authRoutes);
@@ -36,7 +44,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:8081/",
+        url: pathUrl,
       },
     ],
   },
@@ -49,14 +57,13 @@ app.use(
   swaggerUi.setup(specs)
 );
 
+const port = 8081;
+
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server is running on port ${port}`);
+});
+
 db.query('SELECT 1 + 1', (error, results, fields) => {
   if (error) throw error;
   console.log('Connected to MySQL!');
 });
-
-const port = 8081;
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
-
-
