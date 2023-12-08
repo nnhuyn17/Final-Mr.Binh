@@ -7,13 +7,13 @@ import styles from './ViewBooking_Admin.module.scss';
 const cx = classNames.bind(styles);
 
 function ViewBookingAdmin() {
-  const pathBackEnd = "http://localhost:8081";
+  const pathBackEnd = "https://backend-final-web.onrender.com";
 
   const [data, setData] = useState([]);
 
   const fetchData = () => {
     // Fetch data from the server
-    fetch(`http://localhost:8081/getDatafromUserAndMeeting`)
+    fetch(`https://backend-final-web.onrender.com/getDatafromUserAndMeeting`)
       .then(response => response.json())
       .then(data => setData(data.Data))
       .catch(error => console.error('Error fetching data:', error));
@@ -21,7 +21,7 @@ function ViewBookingAdmin() {
 
   const handleRejectMeeting = (id) => {
     // Make a request to update the meeting status to 'rejected'
-    fetch(`http://localhost:8081/UpdateMeetingByID/${id}`, {
+    fetch(`https://backend-final-web.onrender.com/UpdateMeetingByID/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ function ViewBookingAdmin() {
 
   const handleApproveMeeting = (id) => {
     // Make a request to update the meeting status to 'approved'
-    fetch(`http://localhost:8081/UpdateMeetingByID/${id}`, {
+    fetch(`https://backend-final-web.onrender.com/UpdateMeetingByID/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

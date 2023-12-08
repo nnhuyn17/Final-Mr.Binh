@@ -11,7 +11,7 @@ import portfolio from "../../../assets/img/port-1.jpg"
 const cx = classNames.bind(styles);
 
 function Homepage() {
-  const pathBackEnd = "http://localhost:8081";
+  const pathBackEnd = "https://backend-final-web.onrender.com";
 
   const [date, setDate] = useState('');
   const [time_range, setTime] = useState('9am-11am');
@@ -32,7 +32,7 @@ function Homepage() {
     const fullDate = `${date}`;
     const isConfirmed = window.confirm('Are you sure you want to submit?');
     if (isConfirmed) {
-      fetch(`http://localhost:8081/createMeeting`, {
+      fetch(`https://backend-final-web.onrender.com/createMeeting`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
