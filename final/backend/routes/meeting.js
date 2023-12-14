@@ -139,6 +139,7 @@ meetingRouter.get("/getAllBookingByUserID/:user_id" , meetingController.getAllBo
  *               properties:
  *                 Status:
  *                   type: string
+ *                   example: 
  *                 Data:
  *                   type: array
  *                   items:
