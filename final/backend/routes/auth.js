@@ -44,74 +44,51 @@ router.post("/signUp", AuthController.signUp);
  *         description: Unauthorized. Invalid credentials.
  *
  * 
- * /signup:
- *   post:
- *     summary: User signup
- *     tags: [Authentication]
- *     consumes:
- *       - application/json
- *     produces:
- *       - application/json
- *     parameters:
- *       - in: body
- *         name: user
- *         description: User signup details
+ * /signUp:
+ *     post:
+ *       summary: Create a new user account
+ *       tags: [Authentication]
+ *       requestBody:
  *         required: true
- *         schema:
- *           $ref: '#/components/schemas/UserSignup'
- *     responses:
- *       200:
- *         description: Successful signup
- *         schema:
- *           $ref: '#/definitions/SignupResponse'
- *       400:
- *         description: Bad Request
- *         schema:
- *           $ref: '#/definitions/Error'
- *       401:
- *         description: Unauthorized
- *         schema:
- *           $ref: '#/definitions/Error'
- *       500:
- *         description: Internal Server Error
- *         schema:
- *           $ref: '#/definitions/Error'
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/UserSignUpRequest'
+ *             example:
+ *               email: user@example.com
+ *               password: strongpassword
+ *               full_name: John Doe
+ *               date_of_birth: 1990-01-01
+ *               position: Software Engineer
+ *               company: XYZ Corp
+ *               gender: male
+ *               phonenumber: 1234567890
+ *       responses:
+ *         200:
+ *           description: Successfully created account
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 $ref: '#/components/schemas/SignUpResponse'
+ *         400:
+ *           description: Bad Request
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 $ref: '#/definitions/Error'
+ *         401:
+ *           description: Email already exists
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 $ref: '#/definitions/Error'
+ *         500:
+ *           description: Internal Server Error
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 $ref: '#/definitions/Error'
  * 
- * definitions:
- *   UserSignup:
- *     type: object
- *     properties:
- *       email:
- *         type: string
- *       password:
- *         type: string
- *       full_name:
- *         type: string
- *       date_of_birth:
- *         type: string
- *         format: date
- *       position:
- *         type: string
- *       company:
- *         type: string
- * 
- *   SignupResponse:
- *     type: object
- *     properties:
- *       status:
- *         type: string
- *       message:
- *         type: string
- *       data:
- *         type: object
- * 
- *   Error:
- *     type: object
- *     properties:
- *       status:
- *         type: string
- *       error:
- *         type: string
  */
 
 

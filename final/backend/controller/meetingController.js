@@ -1,6 +1,6 @@
 const db = require("../config/database");
 
-const getAllDemo = async (req, res) => {
+const meetingDemo = async (req, res) => {
   const sql = "SELECT * FROM meeting_requests";
   db.query(sql, (err, result) => {
     if (err) {
@@ -10,18 +10,7 @@ const getAllDemo = async (req, res) => {
   });
 };
 
-const createMeeting = async (req, res) => {
-  // const isValidDate = /^\d{4}-\d{2}-\d{2}$/.test(req.body.date);
-  // if (!isValidDate) {
-  //   return res.status(400).json({ Error: "Invalid date format" });
-  // }
-
-  // Validate time_range value
-  // const allowedTimeRanges = ['9am-11am', '1pm-3pm', '3pm-5pm', '5pm-7pm', '7pm-9pm'];
-  // if (!allowedTimeRanges.includes(req.body.time_range)) {
-  //   return res.status(400).json({ Error: "Invalid time_range value" });
-  // }
-
+const createMeeting = async (req, res) => { 
   const sql =
     "INSERT INTO meeting_requests (user_id, date, time_range, content, status) VALUES (?, ?, ?, ?, ?)";
   const values = [req.body.user_id, req.body.date, req.body.time_range, req.body.content, req.body.status || 'pending'];
@@ -106,12 +95,31 @@ const getAllBookingByUserID = async (req, res) => {
     return res.status(200).json({ Status: "Success", Data: result });
   });
 };
+
+
+const getDatafromUserAndMeetingFillter = async (req, res) => {
+  const status = req.params.status; 
+  const sql =
+    "SELECT * FROM account INNER JOIN meeting_requests ON account.id = meeting_requests.user_id where status = ?";
+    const values = [status];
+
+    db.query(sql, values, (err, result) => {
+      if (err) {
+      return res
+          .status(500)
+          .json({ Error: "Error fetching by status" });
+      }
+      return res.status(200).json({ Status: "Success", Data: result });
+  });
+};
+
 module.exports = {
-  getAllDemo,
+  meetingDemo,
   createMeeting,
   deleteMeetingbyID,
   getDatafromUserAndMeeting,
   UpdateMeetingByID,
   getByDate,
   getAllBookingByUserID,
+  getDatafromUserAndMeetingFillter
 };

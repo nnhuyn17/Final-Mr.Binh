@@ -84,7 +84,7 @@ function Header() {
     return (
       <header className={cx('header', { sticky: isSticky })}>
         <Link to="/home" className={cx('logo')}>
-                  Code<span>Xplore</span>
+        PixelPulse<span>Coder</span>
         </Link>
       
 
@@ -114,7 +114,7 @@ function Header() {
     return (
       <header className={cx('header', { sticky: isSticky })}>
         <Link to="/homeAd" className={cx('logo')}>
-        Code<span>Xplore</span>
+        PixelPulse<span>Coder</span>
         </Link>
       
 

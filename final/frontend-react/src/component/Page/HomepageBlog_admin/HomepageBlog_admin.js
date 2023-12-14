@@ -7,22 +7,28 @@ import serice2 from "../../../assets/img/s-2.svg"
 import serice3 from "../../../assets/img/s-3.svg"
 import portfolio from "../../../assets/img/port-1.jpg"
 
-// import { Link, Navigate } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function HomepageBlog_admin() {
-  const pathBackEnd = "http://localhost:8081";
-  
   const [date, setDate] = useState('');
   const [time_range, setTime] = useState('9am-11am');
   const [content, setContent] = useState('');
 
   const handleDateChange = (e) => {
-    setDate(e.target.value);
+    const selectedDate = e.target.value;
+    const currentDate = new Date().toISOString().split('T')[0]; 
+
+    if (selectedDate > currentDate) {
+      setDate(selectedDate);
+    } else {
+      alert('Please choose a date greater than the current date.');
+    }
   };
+
   const handleTimeChange = (e) => {
     setTime(e.target.value);
   };
+
   const handleContentChange = (e) => {
     setContent(e.target.value);
   };
@@ -30,31 +36,37 @@ function HomepageBlog_admin() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const fullDate = `${date}`;
-
-    // Call your API endpoint here with the form data
-    // Example using fetch:
-    fetch(`http://localhost:8081/createMeeting`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        user_id: localStorage.getItem('accountID'), // Replace with the actual user ID
-        date: fullDate,
-        time_range: time_range,
-        content,
-        status: 'pending', // Default status
-      }),
-    })
+    const isConfirmed = window.confirm('Are you sure you want to submit?');
+    if (isConfirmed) {
+      fetch(`http://localhost:8081/createMeeting`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user_id: localStorage.getItem('accountID'), // Replace with the actual user ID
+          date: fullDate,
+          time_range: time_range,
+          content,
+          status: 'pending', 
+        }),
+      })
       .then(response => response.json())
       .then(data => {
         console.log('Success:', data);
-        // Add any additional logic for success
       })
       .catch(error => {
         console.error('Error:', error);
-        // Add any additional error handling logic
       });
+      
+      console.log('Date:', date);
+      console.log('Time Range:', time_range);
+      console.log('Content:', content);
+
+      alert('Thanks for your submit. We will try to respond to you as soon as possible via email ^^');
+
+    }
+
   };
 
   return (
@@ -355,7 +367,7 @@ function HomepageBlog_admin() {
               <label>Date Meeting</label>
               <input
                 type="date"
-                required=""
+                required
                 id="date"
                 value={date}
                 onChange={handleDateChange}
@@ -385,7 +397,7 @@ function HomepageBlog_admin() {
                 cols={30}
                 rows={10}
                 placeholder="Write Message Here ..."
-                required=""
+                required
                 value={content}
                 onChange={handleContentChange}
               />

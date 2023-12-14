@@ -112,6 +112,36 @@
  *                       description: The full name of the user
  *       500:
  *         description: Error fetching user ID
+  * /getUserByID/{id}:
+ *   get:
+ *     summary: Get information of the user by id
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The user id
+ *     responses:
+ *       200:
+ *         description: The information of the user by id
+ *         content:
+ *           application/json:
+ *             schema: 
+ *               type: object
+ *               properties:
+ *                 Status:
+ *                   type: string
+ *                   description: The status of the response
+ *                 Account:
+ *                   type: object
+ *                   properties:
+ *                     full_name:
+ *                       type: string
+ *                       description: The full name of the user
+ *       500:
+ *         description: Error fetching user ID
  */
 
 
@@ -119,94 +149,12 @@ const express = require("express")
 const userRouter = express.Router();
 const models = require('../models/users');
 const userController = require('../controller/userController')
-// Create a new user
-userRouter.post('/create', (req, res) => {
-    const { name, password, role } = req.body;
-    models.User.create({
-        name,
-        password, // You should handle password encryption here
-        role,
-    })
-        .then((user) => {
-            res.status(201).send(user);
-        })
-        .catch((err) => {
-            res.status(500).send(err);
-        });
-});
-
-// List all users
-userRouter.get('/user', (req, res) => {
-    models.User.findAll()
-        .then((users) => {
-            res.json(users);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-});
-
-// Get user by ID
-userRouter.get('/user/:id', (req, res) => {
-    const { id } = req.params;
-    models.User.findByPk(id)
-        .then((user) => {
-            res.json(user);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-});
-
-// Update user by ID
-userRouter.put('/user/:id', (req, res) => {
-    const { id } = req.params;
-    const { name, password, role } = req.body;
-    models.User.update(
-        {
-            name,
-            password, // You should handle password encryption here
-            role,
-        },
-        {
-            where: {
-                id,
-            },
-        }
-    )
-        .then(() => {
-            res.status(204).send('User updated');
-        })
-        .catch((err) => {
-            console.log(err);
-            res.status(500).send(err);
-        });
-});
-
-// Delete user by ID
-userRouter.delete('/user/:id', (req, res) => {
-    const { id } = req.params;
-    models.User.destroy({
-        where: {
-            id,
-        },
-    })
-        .then(() => {
-            res.status(204).send('User deleted');
-        })
-        .catch((err) => {
-            console.log(err);
-            res.status(500).send(err);
-        });
-});
-
 
 //demo 1 
 userRouter.get("/getAllDemo" , userController.getAllDemo);
 userRouter.get("/getByID/:id" , userController.getByID);
 userRouter.get("/getFullNameByID/:id" , userController.getFullNameByID);
 userRouter.get("/getUserByID/:id" , userController.getUserByID);
-userRouter.put("/updateUserID/:id" , userController.updateUserID);
 
 
 

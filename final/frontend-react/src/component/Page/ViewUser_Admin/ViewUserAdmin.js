@@ -8,7 +8,6 @@ const cx = classNames.bind(styles);
 
 function ViewUserAdmin() {
   const [data, setData] = useState([]);
-  const pathBackEnd = "http://localhost:8081";
 
   const fetchData = () => {
     // Fetch data from the server
@@ -43,6 +42,8 @@ function ViewUserAdmin() {
             <th>Full name</th>
             <th>Position</th>
             <th>Company</th>
+            <th>Gender</th>
+            <th>PhoneNumber</th>
             <th>Date of Birth</th>
           </tr>
         </thead>
@@ -54,6 +55,8 @@ function ViewUserAdmin() {
               <td>{item.full_name}</td>
               <td>{item.position}</td>
               <td>{item.company}</td>
+              <td>{item.Gender}</td>
+              <td>{item.PhoneNumber}</td>
               <td>{item.date_of_birth}</td>
 
             </tr>

@@ -11,16 +11,25 @@ import portfolio from "../../../assets/img/port-1.jpg"
 const cx = classNames.bind(styles);
 
 function Homepage() {
-  const [date, setDate] = useState('');
+   const [date, setDate] = useState('');
   const [time_range, setTime] = useState('9am-11am');
   const [content, setContent] = useState('');
 
   const handleDateChange = (e) => {
-    setDate(e.target.value);
+    const selectedDate = e.target.value;
+    const currentDate = new Date().toISOString().split('T')[0]; 
+
+    if (selectedDate > currentDate) {
+      setDate(selectedDate);
+    } else {
+      alert('Please choose a date greater than the current date.');
+    }
   };
+
   const handleTimeChange = (e) => {
     setTime(e.target.value);
   };
+
   const handleContentChange = (e) => {
     setContent(e.target.value);
   };
@@ -40,17 +49,15 @@ function Homepage() {
           date: fullDate,
           time_range: time_range,
           content,
-          status: 'pending', // Default status
+          status: 'pending', 
         }),
       })
       .then(response => response.json())
       .then(data => {
         console.log('Success:', data);
-        // Add any additional logic for success
       })
       .catch(error => {
         console.error('Error:', error);
-        // Add any additional error handling logic
       });
       
       console.log('Date:', date);
@@ -61,10 +68,9 @@ function Homepage() {
 
     }
 
-    // Call your API endpoint here with the form data
-    // Example using fetch:
-
   };
+
+
 
   return (
     <div>
@@ -364,7 +370,7 @@ function Homepage() {
               <label>Date Meeting</label>
               <input
                 type="date"
-                required=""
+                required
                 id="date"
                 value={date}
                 onChange={handleDateChange}
@@ -394,7 +400,7 @@ function Homepage() {
                 cols={30}
                 rows={10}
                 placeholder="Write Message Here ..."
-                required=""
+                required
                 value={content}
                 onChange={handleContentChange}
 

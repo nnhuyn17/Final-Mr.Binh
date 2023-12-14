@@ -14,6 +14,7 @@ body{
     height: 100%;
     color: var(--text-color);
     background: var(--bg-color);
+    margin-bottom: 25px;
 }
 
 
@@ -239,7 +240,6 @@ section{
 }
 
 
-
 .BookingList{
     width: 100%;
     height: 100%;
@@ -254,7 +254,7 @@ section{
     font-size: var(--p-font);
     font-weight: 500;
     color: var(--other-color);
-    padding: 19px 61px 15px 47px;
+    padding: 10px 20px;
 
 }
 
@@ -268,5 +268,6 @@ tbody tr:hover {
 
 tbody tr{
     border-bottom: 1px solid white;
+    margin-bottom: 20px;
 }
 

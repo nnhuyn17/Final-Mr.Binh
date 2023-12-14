@@ -3,17 +3,17 @@ const meetingRouter = express.Router();
 const models = require('../models/meetingRequire');
 const meetingController = require('../controller/meetingController')
 
-meetingRouter.get("/meetingDemo" , meetingController.getAllDemo);
+meetingRouter.get("/meetingDemo" , meetingController.meetingDemo);
 meetingRouter.post("/createMeeting" , meetingController.createMeeting);
 meetingRouter.delete("/deleteMeeting/:id" , meetingController.deleteMeetingbyID);
 meetingRouter.get("/getDatafromUserAndMeeting" , meetingController.getDatafromUserAndMeeting);
 meetingRouter.put("/UpdateMeetingByID/:id" , meetingController.UpdateMeetingByID);
 meetingRouter.get("/getByDate/:date" , meetingController.getByDate);
 meetingRouter.get("/getAllBookingByUserID/:user_id" , meetingController.getAllBookingByUserID);
-
+meetingRouter.get("/getDatafromUserAndMeetingFillter/:status", meetingController.getDatafromUserAndMeetingFillter);
 /**
  * @swagger
- * tags:
+ * tags: 
  *   name: MeetingRequests
  *   description: API for managing meeting requests
  * components:
@@ -41,9 +41,21 @@ meetingRouter.get("/getAllBookingByUserID/:user_id" , meetingController.getAllBo
  *           type: string
  *           description: The status of the meeting request (e.g., pending, approved, rejected)
  * 
-
- * /createMeeting:
+ * /meetingDemo:
+ *   get:
+ *     summary: Lists all meeting requirements
+ *     tags: [MeetingRequests]
+ *     responses:
+ *       200:
+ *         description: The list of meeting requirements
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/MeetingRequest'
  * 
+ * /createMeeting:
  *   post:
  *     summary: Create a new meeting request
  *     tags: [MeetingRequests]
@@ -56,7 +68,7 @@ meetingRouter.get("/getAllBookingByUserID/:user_id" , meetingController.getAllBo
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/createMeeting'
+ *             $ref: '#/components/schemas/MeetingRequest'
  *     responses:
  *       201:
  *         description: Meeting request created successfully
@@ -91,7 +103,7 @@ meetingRouter.get("/getAllBookingByUserID/:user_id" , meetingController.getAllBo
  *         description: Internal Server Error
  *         schema:
  *           $ref: '#/definitions/Error'
- * 
+ * /UpdateMeetingByID/{id}:
  *   put:
  *     summary: Update the status of a meeting request by ID
  *     tags: [MeetingRequests]
@@ -174,6 +186,62 @@ meetingRouter.get("/getAllBookingByUserID/:user_id" , meetingController.getAllBo
  *                   type: array
  *                   items:
  *                     $ref: '#/components/schemas/getAllBookingByUserID'
+ *       500:
+ *         description: Internal Server Error
+ *         schema:
+ *           $ref: '#/definitions/Error'
+ * 
+ * /getDatafromUserAndMeeting:
+ *     get:
+ *       summary: Retrieve data from user and meeting requests
+ *       tags: [MeetingRequests]
+ *       responses:
+ *         200:
+ *           description: Successful response with user and meeting data
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 properties:
+ *                   Status:
+ *                     type: string
+ *                     description: Status of the response (Success)
+ *                   Data:
+ *                     type: array
+ *                     items:
+ *                       $ref: '#/components/schemas/getDatafromUserAndMeeting'
+ *         500:
+ *           description: Internal Server Error
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 $ref: '#/definitions/Error'
+ * 
+ * /getDatafromUserAndMeetingFillter/{status}:
+ *   get:
+ *     summary: Get all meeting requests based on status
+ *     tags: [MeetingRequests]
+ *     parameters:
+ *       - in: path
+ *         name: status
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The status to filter meeting requests
+ *     responses:
+ *       200:
+ *         description: List of meeting requests based on status
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 Status:
+ *                   type: string
+ *                 Data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/getDatafromUserAndMeetingFillter'
  *       500:
  *         description: Internal Server Error
  *         schema:

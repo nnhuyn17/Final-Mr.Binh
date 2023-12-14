@@ -54,27 +54,11 @@ const getAllDemo = async (req, res) => {
     });
   };
 
-  const updateUserID = async (req, res) => {
-    const id = req.params.id; 
-    const status = req.body.status;
-  
-    const sql = "UPDATE account SET ..... where  id = ?";
-    const values = [status, id];
-    db.query(sql, values, (err, result) => {
-      if (err) {
-        console.error("Error deleting:", err);
-        return res.status(500).json({ Error: "Internal server error" });
-      }
-  
-      return res.status(200).json({ Status: "Account updated successfully" });
-    });
-  };
 
   module.exports = {
     getAllDemo,
     getByID,
     getFullNameByID,
-    getUserByID , 
-    updateUserID
+    getUserByID
   };
 
