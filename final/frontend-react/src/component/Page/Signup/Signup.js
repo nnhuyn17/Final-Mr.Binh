@@ -1,27 +1,30 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Signnup.module.scss';
-import { Link , useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function Signup() {
-  const pathBackEnd = "https://backend-final-web.onrender.com";
-
+  const pathBackEnd = "http://localhost:8081";
+  const [gender, setGender] = useState('Female');
+  const handleTimeChange = (e) => {
+    setGender(e.target.value);
+  };
   const navigate = useNavigate();
 
-  // Define state variables
   const [formData, setFormData] = useState({
     email: '',
     full_name: '',
     date_of_birth: '',
     position: '',
     company: '',
+    gender: '',
+    phonenumber: '',
     password: '',
     confirmPassword: '',
   });
 
-  // Define the change handler function
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({
@@ -30,7 +33,6 @@ function Signup() {
     }));
   };
 
-  // Define the submit handler function
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData)
@@ -43,7 +45,7 @@ function Signup() {
 
     try {
       // Example using fetch API, replace with your actual API endpoint
-      const response = await fetch(`https://backend-final-web.onrender.com/signUp`, {
+      const response = await fetch(`http://localhost:8081/signUp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,6 +56,8 @@ function Signup() {
           date_of_birth: formData.date_of_birth,
           position: formData.position,
           company: formData.company,
+          gender:  gender,
+          phonenumber: formData.phonenumber,
           password: formData.password,
         }),
       });
@@ -86,7 +90,7 @@ function Signup() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Enter your email"
-                  required=""
+                  required
                 />
               </div>
               <div className={cx('input-box')}>
@@ -97,7 +101,7 @@ function Signup() {
                   value={formData.full_name}
                   onChange={handleChange}
                   placeholder="Enter your full name"
-                  required=""
+                  required
                 />
               </div>
               <div className={cx('input-box')}>
@@ -108,7 +112,7 @@ function Signup() {
                   value={formData.date_of_birth}
                   onChange={handleChange}
                   placeholder="Enter your DoB"
-                  required=""
+                  required
                 />
               </div>
               <div className={cx('input-box')}>
@@ -119,7 +123,7 @@ function Signup() {
                   value={formData.position}
                   onChange={handleChange}
                   placeholder="Enter your position"
-                  required=""
+                  required
                 />
               </div>
               <div className={cx('input-box')}>
@@ -130,9 +134,33 @@ function Signup() {
                   value={formData.company}
                   onChange={handleChange}
                   placeholder="Enter your company"
-                  required=""
+                  required
                 />
               </div>
+
+              <div className={cx('input-box')}>
+                <label>Gender</label>
+                <select
+                  value={gender}  // Use formData.gender here
+                  onChange={handleTimeChange}
+                >
+                  <option value="Female">Female</option>
+                  <option value="Male">Male</option>
+                </select>
+              </div>
+
+              <div className={cx('input-box')}>
+                <span className={cx('details')}>phonenumber</span>
+                <input
+                  type="text"
+                  name="phonenumber"
+                  value={formData.phonenumber}
+                  onChange={handleChange}
+                  placeholder="Enter your phonenumber"
+                  required
+                />
+              </div>
+
               <div className={cx('input-box')}>
                 <span className={cx('details')}>Password</span>
                 <input
@@ -141,7 +169,7 @@ function Signup() {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="Enter your password"
-                  required=""
+                  required
                 />
               </div>
               <div className={cx('input-box')}>
@@ -152,7 +180,7 @@ function Signup() {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   placeholder="Confirm your password"
-                  required=""
+                  required
                 />
               </div>
             </div>

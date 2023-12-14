@@ -32,6 +32,11 @@ function UserDialog({ onClose }) {
                   View your Booking
                 </Link>
                 </li>
+                <li className={cx('no-color')}>
+                <Link to={`/home/ViewProfile/${localStorage.getItem("accountID")}`} className={cx('no-color')}>
+                  View your profile
+                </Link>
+                </li>
                 <li className={cx('no-color')} onClick={handleQuit}>Log out</li>
               </ul>
           </div>

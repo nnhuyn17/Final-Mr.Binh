@@ -9,12 +9,12 @@ const cx = classNames.bind(styles);
 function ViewBookingUser() {
   const [meetingData, setMeetingData] = useState([]);
 
-  const pathBackEnd = "https://backend-final-web.onrender.com";
+  const pathBackEnd = "http://localhost:8081";
 
   useEffect(() => {
     const fetchMeetingData = async () => {
       try {
-        const response = await fetch(`https://backend-final-web.onrender.com/getAllBookingByUserID/${localStorage.getItem("accountID")}`);
+        const response = await fetch(`http://localhost:8081/getAllBookingByUserID/${localStorage.getItem("accountID")}`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
@@ -31,7 +31,7 @@ function ViewBookingUser() {
   const handleDeleteMeeting = (id) => {
     const isConfirmed = window.confirm('Are you sure you want to delete?');
     if (isConfirmed) {
-      fetch(`https://backend-final-web.onrender.com/deleteMeeting/${id}`, {
+      fetch(`http://localhost:8081/deleteMeeting/${id}`, {
         method: 'DELETE',
       })
       .then(response => {

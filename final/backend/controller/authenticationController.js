@@ -35,6 +35,7 @@ const login = async (req, res, next) => {
             role: account.role,
           };
     
+          
           jwt.sign(
             payload,
             process.env.JWT_SECRET_KEY,
@@ -53,7 +54,7 @@ const login = async (req, res, next) => {
       });
 }
 const signUp = async (req, res, next) => {
-  const { email, password, full_name, date_of_birth, position , company} = req.body;
+  const { email, password, full_name, date_of_birth, position , company, gender, phonenumber} = req.body;
 
   // Check if the email already exists
   const checkEmailQuery = 'SELECT * FROM account WHERE email = ?';
@@ -75,10 +76,10 @@ const signUp = async (req, res, next) => {
     // If email doesn't exist, insert the new account
     const insertAccountQuery = `
         INSERT INTO account 
-        (email, password, full_name, date_of_birth, position,company,role)
-        VALUES (?, ?, ?, ?, ?, ? , ?)
+        (email, password, full_name, date_of_birth, position,company, gender, phonenumber, role)
+        VALUES (?, ?, ?, ?, ?, ? , ?, ?, ?)
       `;
-      const newUserValues = [email, password, full_name, date_of_birth, position, company , 'user'];
+      const newUserValues = [email, password, full_name, date_of_birth, position, company, gender, phonenumber, 'user'];
 
 
       db.query(insertAccountQuery, newUserValues, (err, result) => {

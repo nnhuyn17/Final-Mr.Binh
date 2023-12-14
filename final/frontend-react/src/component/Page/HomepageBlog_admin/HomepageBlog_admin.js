@@ -11,7 +11,7 @@ import portfolio from "../../../assets/img/port-1.jpg"
 const cx = classNames.bind(styles);
 
 function HomepageBlog_admin() {
-  const pathBackEnd = "https://backend-final-web.onrender.com";
+  const pathBackEnd = "http://localhost:8081";
   
   const [date, setDate] = useState('');
   const [time_range, setTime] = useState('9am-11am');
@@ -33,7 +33,7 @@ function HomepageBlog_admin() {
 
     // Call your API endpoint here with the form data
     // Example using fetch:
-    fetch(`https://backend-final-web.onrender.com/createMeeting`, {
+    fetch(`http://localhost:8081/createMeeting`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

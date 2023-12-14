@@ -76,7 +76,7 @@ const UpdateMeetingByID = async (req, res) => {
       return res.status(500).json({ Error: "Internal server error" });
     }
 
-    return res.status(200).json({ Status: "Success" });
+    return res.status(200).json({ Status: "Meeting request updated successfully" });
   });
 };
 

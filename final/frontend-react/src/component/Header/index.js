@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function Header() {
-  const pathBackEnd = "https://backend-final-web.onrender.com";
+  const pathBackEnd = "http://localhost:8081";
   const [isSticky, setSticky] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [fullName, setFullName] = useState(false);
@@ -37,7 +37,7 @@ function Header() {
     const fetchFullName = async () => {
       try {
         const accountID = localStorage.getItem('accountID');
-        const response = await fetch(`https://backend-final-web.onrender.com/getFullNameByID/${accountID}`);
+        const response = await fetch(`http://localhost:8081/getFullNameByID/${accountID}`);
         if (response.ok) {
           const data = await response.json();
           console.log(data)

@@ -27,6 +27,12 @@
  *         company: 
  *           type: string
  *           description: Name of the company that the user works for
+ *         gender: 
+ *           type: string
+ *           description: Gender of user
+ *         phonenumber: 
+ *           type: string
+ *           description: Phone number of user
  *         password:
  *           type: string
  *           description: The user's password
@@ -199,6 +205,9 @@ userRouter.delete('/user/:id', (req, res) => {
 userRouter.get("/getAllDemo" , userController.getAllDemo);
 userRouter.get("/getByID/:id" , userController.getByID);
 userRouter.get("/getFullNameByID/:id" , userController.getFullNameByID);
+userRouter.get("/getUserByID/:id" , userController.getUserByID);
+userRouter.put("/updateUserID/:id" , userController.updateUserID);
+
 
 
 

@@ -9,13 +9,13 @@ const cx = classNames.bind(styles);
 function Homepage_Admin() {
   const [selectedDate, setSelectedDate] = useState(formatDate(new Date()));
   const [meetings, setMeetings] = useState([]);
-  const pathBackEnd = "https://backend-final-web.onrender.com";
+  const pathBackEnd = "http://localhost:8081";
 
   useEffect(() => {
     // Function to fetch meetings for the current date
     const fetchMeetings = async () => {
       try {
-        const response = await fetch(`https://backend-final-web.onrender.com/getByDate/${selectedDate}`, {
+        const response = await fetch(`http://localhost:8081/getByDate/${selectedDate}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

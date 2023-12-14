@@ -11,13 +11,16 @@ import ViewBookingAdmin from './component/Page/ViewBooking_Admin/ViewBookingAdmi
 import ViewUserAdmin from './component/Page/ViewUser_Admin';
 import Signup from './component/Page/Signup/Signup';
 import HomepageBlog_admin from './component/Page/HomepageBlog_admin/HomepageBlog_admin';
+import ViewUserProfile_User from './component/Page/ViewUserProfile_User';
+
 
 // Public routes
 const publicRoutes = [
   { path: '/home', element: <Homepage /> },
   { path: '/', element: <Login /> },
   { path: '/home/viewBookingUser/:user_id', element: <ViewBookingUser/>},
-  { path: '/signup', element: <Signup/>}
+  { path: '/signup', element: <Signup/>},
+  { path: '/home/ViewProfile/:user_id', element: <ViewUserProfile_User/>}
 ];
 
 // Private routes

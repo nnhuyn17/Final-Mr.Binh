@@ -5,58 +5,46 @@ const router = express.Router();
 router.post("/login", AuthController.login);
 router.post("/signUp", AuthController.signUp);
 
-/**
+/** 
  * @swagger
- * tags:
- *   name: Authentication
- *   description: API for user authentication
- * 
- * /auth/login:
+ * /login:
  *   post:
- *     summary: User login
+ *     summary: Authenticate user.
+ *     requestBody:
+ *       description: User credentials for authentication.
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: The username for authentication.
+ *                 example: john_doe
+ *               password:
+ *                 type: string
+ *                 format: password
+ *                 description: The password for authentication.
+ *                 example: securePassword123
  *     tags: [Authentication]
- *     consumes:
- *       - application/json
- *     produces:
- *       - application/json
- *     parameters:
- *       - in: body
- *         name: credentials
- *         description: User login credentials
- *         required: true
- *         schema:
- *           type: object
- *           properties:
- *             email:
- *               type: string
- *               description: User's email
- *             password:
- *               type: string
- *               description: User's password
  *     responses:
  *       200:
- *         description: Successful login
- *         schema:
- *           type: object
- *           properties:
- *             status:
- *               type: string
- *             token:
- *               type: string
- *             role:
- *               type: string
- *             id:
- *               type: integer
+ *         description: Authentication successful.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *                   description: JWT token for authenticated user.
+ *                   example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjM0NTY3ODkwLCJpYXQiOjE1MTYyMzkwMjJ9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
  *       401:
- *         description: Unauthorized
- *         schema:
- *           $ref: '#/definitions/Error'
- *       500:
- *         description: Internal Server Error
- *         schema:
- *           $ref: '#/definitions/Error'
+ *         description: Unauthorized. Invalid credentials.
+ *
  * 
- * /auth/signup:
+ * /signup:
  *   post:
  *     summary: User signup
  *     tags: [Authentication]

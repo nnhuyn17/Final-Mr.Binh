@@ -42,28 +42,7 @@ meetingRouter.get("/getAllBookingByUserID/:user_id" , meetingController.getAllBo
  *           description: The status of the meeting request (e.g., pending, approved, rejected)
  * 
 
- * /meeting-requests:
- *   get:
- *     summary: Get all meeting requests
- *     tags: [MeetingRequests]
- *     responses:
- *       200:
- *         description: List of meeting requests
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 Status:
- *                   type: string
- *                 Data:
- *                   type: array
- *                   items:
- *                     $ref: '#/components/schemas/MeetingRequest'
- *       500:
- *         description: Internal Server Error
- *         schema:
- *           $ref: '#/definitions/Error'
+ * /createMeeting:
  * 
  *   post:
  *     summary: Create a new meeting request
@@ -77,7 +56,7 @@ meetingRouter.get("/getAllBookingByUserID/:user_id" , meetingController.getAllBo
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/MeetingRequestInput'
+ *             $ref: '#/components/schemas/createMeeting'
  *     responses:
  *       201:
  *         description: Meeting request created successfully
@@ -92,7 +71,7 @@ meetingRouter.get("/getAllBookingByUserID/:user_id" , meetingController.getAllBo
  *         schema:
  *           $ref: '#/definitions/Error'
  * 
- * /meeting-requests/{id}:
+ * /deleteMeetingbyID/{id}:
  *   delete:
  *     summary: Delete a meeting request by ID
  *     tags: [MeetingRequests]
@@ -128,7 +107,7 @@ meetingRouter.get("/getAllBookingByUserID/:user_id" , meetingController.getAllBo
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/MeetingRequestStatusInput'
+ *             $ref: '#/components/schemas/UpdateMeetingByID'
  *     responses:
  *       200:
  *         description: Meeting request status updated successfully
@@ -139,7 +118,7 @@ meetingRouter.get("/getAllBookingByUserID/:user_id" , meetingController.getAllBo
  *         schema:
  *           $ref: '#/definitions/Error'
  * 
- * /meeting-requests/{date}:
+ * /getByDate/{date}:
  *   get:
  *     summary: Get meeting requests by date
  *     tags: [MeetingRequests]
@@ -163,13 +142,13 @@ meetingRouter.get("/getAllBookingByUserID/:user_id" , meetingController.getAllBo
  *                 Data:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/MeetingRequest'
+ *                     $ref: '#/components/schemas/getByDate'
  *       500:
  *         description: Internal Server Error
  *         schema:
  *           $ref: '#/definitions/Error'
  * 
- * /meeting-requests/{user_id}:
+ * /getAllBookingByUserID/{user_id}:
  *   get:
  *     summary: Get all meeting requests for a specific user
  *     tags: [MeetingRequests]
@@ -193,7 +172,7 @@ meetingRouter.get("/getAllBookingByUserID/:user_id" , meetingController.getAllBo
  *                 Data:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/MeetingRequest'
+ *                     $ref: '#/components/schemas/getAllBookingByUserID'
  *       500:
  *         description: Internal Server Error
  *         schema:
