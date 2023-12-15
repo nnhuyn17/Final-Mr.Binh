@@ -26,18 +26,24 @@ const createMeeting = async (req, res) => {
 }
 
 const deleteMeetingbyID = async (req, res) => {
-  const id = req.params.id; 
-  const sql = "DELETE FROM meeting_requests WHERE id = ?";
+  const id = req.params.id;
+  const sql = "DELETE FROM meeting_requests WHERE id = ? AND status = 'pending'";
   const values = [id];
-  db.query(sql, values, (err, result) => {
-    if (err) {
-      console.error("Error deleting:", err);
-      return res.status(500).json({ Error: "Internal server error" });
+
+  try {
+    const [result] = await db.promise().query(sql, values);
+    // Check if the row was deleted
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ Error: "Meeting not found or status is not 'pending'" });
     }
 
     return res.status(200).json({ Status: "Success" });
-  });
+  } catch (err) {
+    console.error("Error deleting:", err);
+    return res.status(500).json({ Error: "Internal server error" });
+  }
 };
+
 
 const getDatafromUserAndMeeting = async (req, res) => {
   const sql =

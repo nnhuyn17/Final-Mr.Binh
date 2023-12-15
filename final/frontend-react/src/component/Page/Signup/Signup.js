@@ -56,7 +56,7 @@ function Signup() {
           date_of_birth: formData.date_of_birth,
           position: formData.position,
           company: formData.company,
-          gender:  gender,
+          gender: gender,
           phonenumber: formData.phonenumber,
           password: formData.password,
         }),
@@ -64,11 +64,18 @@ function Signup() {
 
       if (response.ok) {
         console.log('Signup successful!');
-        navigate('/'); // Replace with the desired path
+        navigate('/');
       } else {
         console.error('Signup failed');
+        if (response.status === 401) {
+          console.error('Email already exists');
+          alert('Signup failed. The email already exists. Please use a different email.');
+        }
       }
-    } catch (error) {
+    }
+
+
+    catch (error) {
       console.error('Error during signup:', error);
     }
   };
@@ -112,6 +119,7 @@ function Signup() {
                   value={formData.date_of_birth}
                   onChange={handleChange}
                   placeholder="Enter your DoB"
+                  max={new Date().toISOString().split('T')[0]} 
                   required
                 />
               </div>
@@ -141,7 +149,7 @@ function Signup() {
               <div className={cx('input-box')}>
                 <label>Gender</label>
                 <select
-                  value={gender}  // Use formData.gender here
+                  value={gender}
                   onChange={handleTimeChange}
                 >
                   <option value="Female">Female</option>

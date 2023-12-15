@@ -28,28 +28,32 @@ function ViewBookingUser() {
     fetchMeetingData();
   }, []);
 
-  const handleDeleteMeeting = (id) => {
+  const handleDeleteMeeting = (id, status) => {
     const isConfirmed = window.confirm('Are you sure you want to delete?');
+    
     if (isConfirmed) {
       fetch(`http://localhost:8081/deleteMeeting/${id}`, {
         method: 'DELETE',
       })
-      .then(response => {
-        if (response.ok) {
-          // If the deletion is successful, update the local state
-          setMeetingData(prevData => prevData.filter(meeting => meeting.id !== id));
-          alert('Deleted successfully ');
-
-        } else {
-          console.error(`Failed to delete meeting with ID ${id}`);
-        }
-      })
-      .catch(error => {
-        console.error('Error deleting meeting:', error);
-      });
-
+        .then(response => {
+          if (response.ok) {
+            // If the deletion is successful, update the local state
+            setMeetingData(prevData => prevData.filter(meeting => meeting.id !== id));
+            alert('Deleted successfully ');
+          } else {
+            if (response.status === 404) {
+              // Meeting not found or status is not 'pending'
+              alert('Meeting not found or the status is not "pending." Unable to delete.');
+            } else {
+              console.error(`Failed to delete meeting with ID ${id}`);
+            }
+          }
+        })
+        .catch(error => {
+          console.error('Error deleting meeting:', error);
+        });
     }
-  }
+  };
 
 
   return (
