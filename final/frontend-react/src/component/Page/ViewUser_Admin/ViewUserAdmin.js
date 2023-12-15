@@ -11,7 +11,7 @@ function ViewUserAdmin() {
 
   const fetchData = () => {
     // Fetch data from the server
-    fetch(`http://localhost:8081/getAllDemo`)
+    fetch(`https://backend-final-web.onrender.com/getAllDemo`)
     .then(response => response.json())
     .then(data => {
       setData(data.accounts);

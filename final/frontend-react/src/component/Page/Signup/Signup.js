@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function Signup() {
-  const pathBackEnd = "http://localhost:8081";
+  const pathBackEnd = "https://backend-final-web.onrender.com";
   const [gender, setGender] = useState('Female');
   const handleTimeChange = (e) => {
     setGender(e.target.value);
@@ -45,7 +45,7 @@ function Signup() {
 
     try {
       // Example using fetch API, replace with your actual API endpoint
-      const response = await fetch(`http://localhost:8081/signUp`, {
+      const response = await fetch(`https://backend-final-web.onrender.com/signUp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

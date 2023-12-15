@@ -13,7 +13,7 @@ function ViewUserProfile_User() {
   useEffect(() => {
     const fetchMeetingData = async () => {
       try {
-        const response = await fetch(`http://localhost:8081/getUserByID/${localStorage.getItem("accountID")}`);
+        const response = await fetch(`https://backend-final-web.onrender.com/getUserByID/${localStorage.getItem("accountID")}`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }

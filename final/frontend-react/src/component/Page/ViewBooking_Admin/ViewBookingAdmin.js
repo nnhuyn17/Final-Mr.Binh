@@ -14,8 +14,8 @@ function ViewBookingAdmin() {
 
     // Fetch data from the server with optional status parameter
     const url = selectedStatus
-      ? `http://localhost:8081/getDatafromUserAndMeetingFillter/${selectedStatus}`
-      : `http://localhost:8081/getDatafromUserAndMeeting`;
+      ? `https://backend-final-web.onrender.com/getDatafromUserAndMeetingFillter/${selectedStatus}`
+      : `https://backend-final-web.onrender.com/getDatafromUserAndMeeting`;
 
     fetch(url)
       .then(response => response.json())
@@ -25,7 +25,7 @@ function ViewBookingAdmin() {
 
   const handleRejectMeeting = (id) => {
     // Make a request to update the meeting status to 'rejected'
-    fetch(`http://localhost:8081/UpdateMeetingByID/${id}`, {
+    fetch(`https://backend-final-web.onrender.com/UpdateMeetingByID/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ function ViewBookingAdmin() {
 
   const handleApproveMeeting = (id) => {
     // Make a request to update the meeting status to 'approved'
-    fetch(`http://localhost:8081/UpdateMeetingByID/${id}`, {
+    fetch(`https://backend-final-web.onrender.com/UpdateMeetingByID/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
