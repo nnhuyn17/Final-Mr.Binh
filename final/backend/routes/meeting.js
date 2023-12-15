@@ -99,6 +99,12 @@ meetingRouter.get("/getDatafromUserAndMeetingFillter/:status", meetingController
  *         description: Meeting request deleted successfully
  *         schema:
  *           $ref: '#/definitions/Success'
+ *       404:
+ *          description: Meeting not found or status is not 'pending'
+ *          content:
+ *          application/json:
+ *           schema:
+ *             $ref: '#/definitions/Error'
  *       500:
  *         description: Internal Server Error
  *         schema:
