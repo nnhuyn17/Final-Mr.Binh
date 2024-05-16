@@ -9,6 +9,7 @@ require("dotenv").config();
 const login = async (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
+    console.log(email + " " + password);
     const sql = `SELECT * FROM account WHERE email = ?`;
   
     db.query(sql, [email], (err, result) => {
@@ -81,7 +82,7 @@ const signUp = async (req, res, next) => {
       `;
       const newUserValues = [email, password, full_name, date_of_birth, position, company, gender, phonenumber, 'user'];
 
-
+ 
       db.query(insertAccountQuery, newUserValues, (err, result) => {
         if (err) {
           return res.status(400).json({

@@ -1,7 +1,9 @@
 const express = require("express");
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
+const meetingRequestRouter = require("./routes/meetingRequest");
 const meetingRouter = require("./routes/meeting");
+const addressRouter = require("./routes/address");
 
 const cors = require('cors');
 
@@ -15,7 +17,7 @@ const configViewEngine = require("./config/viewEngine")
 const app = express();
 
 const port = process.env.PORT || 8888;
-
+ 
 
 app.use(cors());
 app.use(express.json());
@@ -27,7 +29,10 @@ configViewEngine(app)
 // define all our routes
 app.use("/", userRoutes);
 app.use("/", authRoutes);
+app.use("/", meetingRequestRouter);
 app.use("/", meetingRouter);
+app.use("/", addressRouter);
+
 
 const options = {
   definition: {
