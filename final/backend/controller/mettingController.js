@@ -23,9 +23,9 @@ const createmeetingApprove = async (req, res) => {
 }
 
 const getAllcreatemeetingApproveBymeetingID = async (req, res) => {
-    const user_id = req.params.user_id; 
+    const meeting_id = req.params.meeting_id; 
     const sql = "SELECT * FROM meeting where meeting_id  = ?";
-    const values = [user_id];
+    const values = [meeting_id];
   
     db.query(sql , values ,  (err, result) => {
       if (err) {
