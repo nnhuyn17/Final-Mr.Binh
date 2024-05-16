@@ -22,7 +22,21 @@ const createmeetingApprove = async (req, res) => {
     });
 }
 
+const getAllcreatemeetingApproveBymeetingID = async (req, res) => {
+    const user_id = req.params.user_id; 
+    const sql = "SELECT * FROM meeting where meeting_id  = ?";
+    const values = [user_id];
+  
+    db.query(sql , values ,  (err, result) => {
+      if (err) {
+        return res.status(500).json({ Error: "Error fetching booking req" });
+      }
+      return res.status(200).json({ Status: "Success", Data: result });
+    });
+  };
+
 module.exports = {
     meetingApprove,
-    createmeetingApprove
+    createmeetingApprove,
+    getAllcreatemeetingApproveBymeetingID
 };
