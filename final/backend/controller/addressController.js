@@ -45,8 +45,25 @@ const adrressDemo = async (req, res) => {
     }
   };
 
+  const UpdateAddressByID = async (req, res) => {
+    const id = req.params.id; 
+    const address = req.body.address;
+  
+    const sql = "UPDATE address SET address = ? WHERE id = ?";
+    const values = [address, id];
+    db.query(sql, values, (err, result) => {
+      if (err) {
+        console.error("Error update:", err);
+        return res.status(500).json({ Error: "Internal server error" });
+      }
+  
+      return res.status(200).json({ Status: "Address updated successfully" });
+    });
+  };
+
   module.exports = {
     adrressDemo,
     createAddress,
-    deleteAddressbyID
+    deleteAddressbyID,
+    UpdateAddressByID
   };
