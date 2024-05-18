@@ -13,7 +13,7 @@ const meetingApprove = async (req, res) => {
 
 const createmeetingApprove = async (req, res) => {
     const sql = 'INSERT INTO meeting (meeting_id, address, type, note) VALUES (?, ?, ?, ?)';
-    db.query(sql, [req.body.meeting_id, req.body.address_id, req.body.type, req.body.note], (err, results) => {
+    db.query(sql, [req.body.meeting_id, req.body.address, req.body.type, req.body.note], (err, results) => {
         if (err) {
             console.error(err);
             return res.status(500).json({ error: 'Database insertion failed' });
