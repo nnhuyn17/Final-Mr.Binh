@@ -1,6 +1,6 @@
 const express = require("express")
 const meetingRequestRouter = express.Router();
-const meetingRequestController = require('../controller/meetingRequestController')
+const meetingRequestController = require('../controller/meetingRequestController') 
 
 meetingRequestRouter.get("/meetingDemo" , meetingRequestController.meetingDemo);
 meetingRequestRouter.post("/createMeeting" , meetingRequestController.createMeeting);
