@@ -1,6 +1,5 @@
 const db = require("../config/database");
 const express = require("express");
-const { UsersModel } = require("../models/users");
 
 const getAllDemo = async (req, res) => {
     const sql = "SELECT * FROM account";
